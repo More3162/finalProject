@@ -3,7 +3,7 @@ const generateRandomId = require('../../helpers/generateRandomId');
 const Restaurant = require('../../restaurant/models/Restaurant');
 const { trim, add } = require('lodash');
 const Address = require('../../helpers/mongodb/Address');
-const { DEFAULT_VALIDATION } = require('../../helpers/mongodb/mongooseValidators');
+const { DEFAULT_VALIDATION, PHONE, EMAIL } = require('../../helpers/mongodb/mongooseValidators');
 
 const customerSchema = new mongoose.Schema({
     customer_id: {
@@ -17,7 +17,7 @@ const customerSchema = new mongoose.Schema({
     email: EMAIL,
     password: { type: String, required: true, trim: true },
     address: Address,
-    phone_number: PONE,
+    phone_number: PHONE,
     order_history: [{
         order_id: String,
         restaurant_id: {

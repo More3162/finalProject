@@ -13,3 +13,5 @@ const connectToDb = async () => {
         await connectToAtlas();
     }
 }
+
+module.exports = connectToDb;

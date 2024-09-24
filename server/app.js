@@ -4,6 +4,9 @@ const restaurantRoutes = require('./routes/restaurantRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const menuItemRoutes = require('./routes/menuItemRoutes');
 const dotenv = require('dotenv');
+const chalk = require('chalk');
+
+const connectToDb = require('./DB/dbService');
 
 dotenv.config();
 
@@ -17,13 +20,9 @@ app.use('/api/customers', customerRoutes);
 app.use('/api/menu-items', menuItemRoutes);
 
 
-
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
-        });
-    })
-    .catch(err => console.error(err));
+app.listen(PORT, () => {
+    console.log(chalk.blue("app is listening to port " + PORT));
+    connectToDb();
+});
 
 

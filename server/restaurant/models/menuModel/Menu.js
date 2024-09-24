@@ -11,9 +11,9 @@ const menuItemSchema = new mongoose.Schema({
         required: true
     },
     restaurant_id: {
-        type: String,
-        required: true,
-        ref: Restaurant // מפנה למסעדה
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Restaurant',
+        required: true
     },
     name: DEFAULT_VALIDATION,
     category: String, // לדוגמה: "ראשונות", "עיקריות", "קינוחים"
