@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const generateRandomId = require('../../helpers/generateRandomId');
-const Restaurant = require('../../restaurant/models/Restaurant');
+const generateRandomId = require('../helpers/generateRandomId');
+const Restaurant = require('./Restaurant');
 const { trim, add } = require('lodash');
-const Address = require('../../helpers/mongodb/Address');
-const { DEFAULT_VALIDATION, PHONE, EMAIL } = require('../../helpers/mongodb/mongooseValidators');
+const Address = require('../helpers/mongodb/Address');
+const { DEFAULT_VALIDATION, PHONE, EMAIL } = require('../helpers/mongodb/mongooseValidators');
 
 const customerSchema = new mongoose.Schema({
     customer_id: {

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const MenuItem = require('../../restaurant/models/menuModel/Menu');
-const Customer = require('../../users/models/Users');
-const Restaurant = require('../../restaurant/models/Restaurant');
-const generateRandomId = require('../../helpers/generateRandomId');
-const Address = require('../../helpers/mongodb/Address');
+const MenuItem = require('../models/Menu');
+const Customer = require('../models/Users');
+const Restaurant = require('../models/Restaurant');
+const generateRandomId = require('../helpers/generateRandomId');
+const Address = require('../helpers/mongodb/Address');
 const { string, required } = require('joi');
 
 // הגדרת סכמה להזמנה

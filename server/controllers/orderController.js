@@ -1,5 +1,5 @@
-const Order = require('../orders/models/Orders');
-const Customer = require('../users/models/Users');
+const Order = require('../models/Orders');
+const Customer = require('../models/Users');
 
 
 // הוספת הזמנה חדשה
