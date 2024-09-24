@@ -15,6 +15,11 @@ const restaurantSchema = new mongoose.Schema({
     address: Address,
     phone: PHONE,
     email: EMAIL,
+    password: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     opening_hours: {
         monday: String,
         tuesday: String,
