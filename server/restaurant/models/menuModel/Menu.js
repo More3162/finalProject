@@ -1,21 +1,24 @@
 const mongoose = require('mongoose');
+const generateRandomId = require('../../../helpers/generateRandomId');
+const Restaurant = require('../Restaurant');
 
 const menuItemSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        unique: true,  // מוודא שאין מספרים כפולים
+    item_id: {
+        type: String,
+        unique: true,
+        default: () => generateRandomId(6), // מזהה רנדומלי באורך 6 תווים
+        required: true
+    },
+    restaurant_id: {
+        type: String,
         required: true,
-        default: function () {
-            // פונקציה ליצירת ID אוטומטי
-            return this.constructor.countDocuments().exec().then(count => count + 1);
-        }
+        ref: 'Restaurant' // מפנה למסעדה
     },
     name: { type: String, required: true },
-    description: { type: String },
+    category: String, // לדוגמה: "ראשונות", "עיקריות", "קינוחים"
     price: { type: Number, required: true },
-    category: { type: String, required: true },
-    isAvailable: { type: Boolean, default: true },
-    restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant', required: true },  // קישור למסעדה
+    description: String,
+    is_available: { type: Boolean, default: true } // האם המנה זמינה
 });
 
-module.exports = mongoose.model('MenuItem', menuItemSchema);
+const MenuItem = mongoose.model('MenuItem', menuItemSchema);
