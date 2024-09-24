@@ -1,7 +1,7 @@
 const Order = require('../models/Order');
 const Customer = require('../models/Customer');
-const Restaurant = require('../models/Restaurant');
-const MenuItem = require('../../menu/models/MenuItem');
+const Restaurant = require('../restaurant/models/Restaurant');
+const MenuItem = require('../restaurant/models/menuModel/Menu');
 
 
 // הוספת הזמנה חדשה
@@ -41,18 +41,32 @@ exports.getOrders = async (req, res) => {
     }
 };
 
-// קבלת הזמנה לפי מזהה
-exports.getOrderById = async (req, res) => {
+//קבלת הזמנה על פי סטטוס הזמנה
+exports.getOrdersByStatus = async (req, res) => {
+    try {
+        const orders = await Order.find({ status: req.params.status });
+        res.json(orders);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+//עדכון פריטים בהזמנה
+exports.updateOrderItems = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
         if (!order) {
             return res.status(404).json({ message: 'Order not found' });
         }
+
+        order.items = req.body.items;
+        await order.save();
         res.json(order);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // עדכון סטטוס הזמנה
 exports.updateOrderStatus = async (req, res) => {
