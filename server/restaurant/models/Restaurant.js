@@ -29,7 +29,7 @@ const restaurantSchema = new mongoose.Schema({
         saturday: String,
         sunday: String
     },
-    menu_items: [{
+    menu: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: MenuItem,
     }]

@@ -16,7 +16,7 @@ const menuItemSchema = new mongoose.Schema({
         required: true
     },
     name: DEFAULT_VALIDATION,
-    category: String, // לדוגמה: "ראשונות", "עיקריות", "קינוחים"
+    category: String, // לדוגמה: "ראשונות", "עיקריות", "קינוחים" // להפריד לקובץ נפרד אולי לעשות מודלים 
     price: { type: Number, required: true },
     description: DEFAULT_VALIDATION,
     is_available: { type: Boolean, default: true } // האם המנה זמינה

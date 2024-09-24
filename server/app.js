@@ -22,7 +22,7 @@ app.use('/customers', customerRoutes);
 app.use('/menu-items', menuItemRoutes);
 app.use('/orders', orderRoutes);
 
-
+console.log("hey or")
 app.listen(PORT, () => {
     console.log(chalk.blue("app is listening to port " + PORT));
     connectToDb();
