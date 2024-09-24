@@ -1,6 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const customerController = require('../controllers/customerController');
+
+// מסלולים ללקוחות
+router.post('/register', customerController.register);
+router.post('/login', customerController.login);
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+/* const express = require('express');
+const router = express.Router();
 const Customer = require('../users/models/Users');
+
 
 // יצירת לקוח חדש
 router.post('/', async (req, res) => {
@@ -23,4 +42,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; */

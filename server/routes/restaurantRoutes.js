@@ -1,5 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const restaurantController = require('../controllers/restaurantController');
+
+// מסלולים למסעדות
+router.post('/', restaurantController.createRestaurant);
+router.get('/', restaurantController.getAllRestaurants);
+router.get('/:id', restaurantController.getRestaurantById);
+router.put('/:id', restaurantController.updateRestaurant);
+router.delete('/:id', restaurantController.deleteRestaurant);
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+/* const express = require('express');
+const router = express.Router();
 const Restaurant = require('../restaurant/models/Restaurant');
 
 // יצירת מסעדה חדשה
@@ -23,4 +45,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; */
