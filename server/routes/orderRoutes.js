@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController'); // בקרי ההזמנות
-const authMiddleware = require('../middleware/authMiddleware'); // אימות JWT
-const Order = require('../models/orderModel/Order'); // מודל הזמנה
-const Customer = require('../models/customerModel/Customer'); // מודל לקוח
-const Restaurant = require('../models/restaurantModel/Restaurant'); // מודל מסעדה
-const MenuItem = require('../models/restaurantModel/menuModel/Menu'); // מודל פריט תפריט
+const authMiddleware = require('../middlewares/authMiddleware'); // אימות JWT
+
 
 
 // יצירת הזמנה חדשה

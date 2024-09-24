@@ -1,7 +1,5 @@
-const Order = require('../models/Order');
-const Customer = require('../models/Customer');
-const Restaurant = require('../restaurant/models/Restaurant');
-const MenuItem = require('../restaurant/models/menuModel/Menu');
+const Order = require('../orders/models/Orders');
+const Customer = require('../users/models/Users');
 
 
 // הוספת הזמנה חדשה

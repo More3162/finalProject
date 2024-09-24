@@ -1,28 +1,29 @@
 const mongoose = require('mongoose');
-const MenuItem = require('../../menu/models/MenuItem');
-const Customer = require('../../customer/models/Customer');
+const MenuItem = require('../../restaurant/models/menuModel/Menu');
+const Customer = require('../../users/models/Users');
 const Restaurant = require('../../restaurant/models/Restaurant');
 const generateRandomId = require('../../helpers/generateRandomId');
 const Address = require('../../helpers/mongodb/Address');
+const { string, required } = require('joi');
 
 // הגדרת סכמה להזמנה
 const orderSchema = new mongoose.Schema({
-    _id: generateRandomId(), // מזהה ייחודי להזמנה
-    customerId: {
-        type: mongoose.Schema.Types.ObjectId, // מזהה הלקוח
-        ref: Customer,
+    _id: { type: String, default: generateRandomId(), required: true },
+    customer_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Customer",
         required: true
     },
-    restaurantId: {
+    restaurant_id: {
         type: mongoose.Schema.Types.ObjectId, // מזהה המסעדה
-        ref: Restaurant,
+        ref: "Restaurant",
         required: true
     },
     items: [
         {
-            menuItemId: {
+            item_id: {
                 type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
-                ref: MenuItem,
+                ref: "MenuItem",
                 required: true
             },
             quantity: {
