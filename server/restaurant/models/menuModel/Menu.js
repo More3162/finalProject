@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const generateRandomId = require('../../../helpers/generateRandomId');
 const Restaurant = require('../Restaurant');
+const { DEFAULT_VALIDATION } = require('../../../helpers/mongodb/mongooseValidators');
 
 const menuItemSchema = new mongoose.Schema({
     item_id: {
@@ -14,10 +15,10 @@ const menuItemSchema = new mongoose.Schema({
         required: true,
         ref: 'Restaurant' // מפנה למסעדה
     },
-    name: { type: String, required: true },
+    name: DEFAULT_VALIDATION,
     category: String, // לדוגמה: "ראשונות", "עיקריות", "קינוחים"
     price: { type: Number, required: true },
-    description: String,
+    description: DEFAULT_VALIDATION,
     is_available: { type: Boolean, default: true } // האם המנה זמינה
 });
 

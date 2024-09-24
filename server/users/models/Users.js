@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const generateRandomId = require('../../helpers/generateRandomId');
 const Restaurant = require('../../restaurant/models/Restaurant');
+const { trim, add } = require('lodash');
+const Address = require('../../helpers/mongodb/Address');
+const { DEFAULT_VALIDATION } = require('../../helpers/mongodb/mongooseValidators');
 
 const customerSchema = new mongoose.Schema({
     customer_id: {
@@ -9,11 +12,12 @@ const customerSchema = new mongoose.Schema({
         default: () => generateRandomId(6), // מזהה רנדומלי באורך 6 תווים
         required: true
     },
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
-    phone_number: { type: String, required: true },
+    first_name: DEFAULT_VALIDATION,
+    last_name: DEFAULT_VALIDATION,
+    email: EMAIL,
+    password: { type: String, required: true, trim: true },
+    address: Address,
+    phone_number: PONE,
     order_history: [{
         order_id: String,
         restaurant_id: {
