@@ -5,7 +5,7 @@ const Customer = require('../models/Users');
 // הוספת הזמנה חדשה
 exports.createOrder = async (req, res) => {
     try {
-        const { customerId, restaurantId, items, totalPrice } = req.body;
+        const { customer_id, restaurant_id, items, totalPrice } = req.body;
 
         // משיכת פרטי הלקוח (כולל כתובת)
         const customer = await Customer.findById(customerId);

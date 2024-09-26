@@ -5,12 +5,6 @@ const Address = require('../helpers/mongodb/Address');
 const { PHONE, DEFAULT_VALIDATION, EMAIL } = require('../helpers/mongodb/mongooseValidators');
 
 const restaurantSchema = new mongoose.Schema({
-    restaurant_id: {
-        type: String,
-        unique: true,
-        default: () => generateRandomId(6), // מזהה רנדומלי באורך 6 תווים
-        required: true
-    },
     name: DEFAULT_VALIDATION,
     address: Address,
     phone: PHONE,
@@ -18,7 +12,6 @@ const restaurantSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        trim: true,
     },
     opening_hours: {
         monday: String,
@@ -29,14 +22,6 @@ const restaurantSchema = new mongoose.Schema({
         saturday: String,
         sunday: String,
     },
-    menu: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: MenuItem,
-    }],
-    orders: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order'
-    }],
     isAdmin: {
         type: Boolean,
         default: true,
