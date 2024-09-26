@@ -1,30 +1,80 @@
-const Restaurant = require('../models/restaurantModel');
+const Restaurant = require('../models/Restaurant');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const resRegister = async (newRestaurant) => {
+
+//aceess data
+const resRegister = async (newRestaurant, req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(newRestaurant.password, 10);
-        const restaurant = new Restaurant({ ...newRestaurant, password: hashedPassword });
-        let newRestaurant = new Restaurant(restaurant);
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const newRestaurant = new Restaurant({ ...req.body, password: hashedPassword });
         await newRestaurant.save();
         return _.pick(newRestaurant, ['_id', 'name', 'email']);
     } catch (error) {
-        throw new Error(error.message);
+        res.status(400).json({ message: error.message });
     }
 }
+
+
 const resLogin = async (email, password) => {
     try {
         const restaurant = await Restaurant.findOne({ email: email });
-        if (!restaurant) throw new Error('Invalid Email');
+        if (!restaurant) return res.status(400).json({ message: 'Invalid Email' });
         const isMatch = await bcrypt.compare(password, restaurant.password);
-        if (!isMatch) throw new Error('Invalid Password');
+        if (!isMatch) return res.status(400).json({ message: 'Invalid Password' });
         const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         return token;
-    }
-    catch (error) {
-        throw new Error(error.message);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 }
 
 module.exports = { resRegister, resLogin };
+
+
+/* exports.createRestaurant = async (req, res) => {
+    try {
+        const restaurant = new Restaurant(req.body);
+        await restaurant.save();
+        res.status(201).json(restaurant);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}; */
+
+/* exports.resRegister = async (req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const restaurant = new Restaurant({ ...req.body, password: hashedPassword });
+        await restaurant.save();
+        res.status(201).json({ message: 'Restaurant created' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+
+
+exports.resRegister = async (req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const restaurant = new Restaurant({ ...req.body, password: hashedPassword });
+        await restaurant.save();
+        res.status(201).json({ message: 'Restaurant created' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+exports.resLogin = async (req, res) => {
+    try {
+        const restaurant = await Restaurant.findOne({ email: req.body.email });
+        if (!restaurant) return res.status(400).json({ message: 'Invalid credentials' });
+        const isMatch = await bcrypt.compare(req.body.password, restaurant.password);
+        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+        const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}; */
