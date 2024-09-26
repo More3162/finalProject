@@ -8,10 +8,15 @@ const orderRoutes = require('./routes/orderRoutes');
 const dotenv = require('dotenv');
 const chalk = require('chalk');
 const config = require('config');
+const router = require('./routes/restaurantRoutes');
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
+
+app.use(router);
+
+
 app.use('/restaurants', restaurantRoutes);
 app.use('/customers', customerRoutes);
 app.use('/menu-items', menuItemRoutes);
