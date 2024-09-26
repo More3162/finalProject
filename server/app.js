@@ -8,24 +8,22 @@ const orderRoutes = require('./routes/orderRoutes');
 const dotenv = require('dotenv');
 const chalk = require('chalk');
 const config = require('config');
-
-
 dotenv.config();
-
 const app = express();
-
 const PORT = process.env.PORT || 3000;
-
 app.use(express.json());
 app.use('/restaurants', restaurantRoutes);
 app.use('/customers', customerRoutes);
 app.use('/menu-items', menuItemRoutes);
 app.use('/orders', orderRoutes);
 
-console.log("hey or")
+
+
+
 app.listen(PORT, () => {
     console.log(chalk.blue("app is listening to port " + PORT));
     connectToDb();
+
 });
 
 

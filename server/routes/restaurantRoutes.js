@@ -4,7 +4,8 @@ const restaurantController = require('../controllers/restaurantController');
 
 // מסלולים למסעדות
 
-router.post('/', restaurantController.createRestaurant);
+router.post('/restaurant', restaurantController.resRegister);
+router.post('/restaurant/login', restaurantController.resLogin);
 
 module.exports = router;
 

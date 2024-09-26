@@ -3,7 +3,7 @@ const { mongoose } = require('mongoose');
 
 const connectToMongoDb = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/restaurants');
+        await mongoose.connect('mongodb://127.0.0.1:27017/dixie');
         console.log(chalk.red('Connected to MongoDB local'));
     }
     catch (error) {

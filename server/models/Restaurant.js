@@ -27,12 +27,20 @@ const restaurantSchema = new mongoose.Schema({
         thursday: String,
         friday: String,
         saturday: String,
-        sunday: String
+        sunday: String,
     },
     menu: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: MenuItem,
-    }]
+    }],
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order'
+    }],
+    isAdmin: {
+        type: Boolean,
+        default: true,
+    }
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);

@@ -22,5 +22,7 @@ const PHONE = {
     match: RegExp(/0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}/),	// phone number validation
 }
 
+
+
 // export the  EMAIL, DEFAULT_VALIDATION
 module.exports = { EMAIL, DEFAULT_VALIDATION, PHONE }

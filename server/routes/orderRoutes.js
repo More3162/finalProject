@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/authMiddleware'); // אימות J
 
 
 // יצירת הזמנה חדשה
-router.post('/', authMiddleware, orderController.createOrder);
+router.post('/newOrder', authMiddleware, orderController.createOrder);
 
 // קבלת הזמנה על פי סטטוס הזמנה
 router.get('/status', authMiddleware, orderController.getOrdersByStatus);
