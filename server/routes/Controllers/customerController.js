@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const customerController = require('../../controllers/customerAccessDataService');
+const customerController = require('../../accessDataService/customerAccessDataService');
 
 // מסלולים ללקוחות
 router.post('/register', customerController.register);

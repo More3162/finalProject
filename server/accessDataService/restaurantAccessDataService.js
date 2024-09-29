@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 
-//aceess data
+// יצירת מסעדה חדשה
 const resRegister = async (newRestaurant, req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -15,7 +15,7 @@ const resRegister = async (newRestaurant, req, res) => {
     }
 }
 
-
+// כניסת מסעדה קיימת
 const resLogin = async (email, password) => {
     try {
         const restaurant = await Restaurant.findOne({ email: email });

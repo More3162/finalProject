@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const orderController = require('../../controllers/orderAccessDataService'); // בקרי ההזמנות
+const orderController = require('../../accessDataService/orderAccessDataService'); // בקרי ההזמנות
 const authMiddleware = require('../../middlewares/authMiddleware'); // אימות JWT
 
 

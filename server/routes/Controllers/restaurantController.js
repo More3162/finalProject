@@ -1,5 +1,5 @@
 const express = require('express');
-const restaurantController = require('../../controllers/restaurantAccessDataService');
+const restaurantController = require('../../accessDataService/restaurantAccessDataService');
 
 
 // מסלולים למסעדות
