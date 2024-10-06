@@ -43,8 +43,18 @@ const createOrder = async (orderDetails) => {
     }
 };
 
-/* 
-// קבלת כל ההזמנות
+
+//קבלת הזמנה על פי סטטוס הזמנה
+/* const getOrdersByStatus = async (orderDetails) => {
+    try {
+        const orders = await Order.find({ status: orderDetails.status });
+        res.json(orders);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}; */
+
+/* // קבלת כל ההזמנות
 exports.getOrders = async (req, res) => {
     try {
         const orders = await Order.find();
@@ -52,20 +62,11 @@ exports.getOrders = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}; */
 
-//קבלת הזמנה על פי סטטוס הזמנה
-exports.getOrdersByStatus = async (req, res) => {
-    try {
-        const orders = await Order.find({ status: req.params.status });
-        res.json(orders);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
 
 // עדכון סטטוס הזמנה
-exports.updateOrderStatus = async (req, res) => {
+/* exports.updateOrderStatus = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
         if (!order) {
@@ -78,10 +79,10 @@ exports.updateOrderStatus = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}; */
 
 // מחיקת הזמנה
-exports.deleteOrder = async (req, res) => {
+/* exports.deleteOrder = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
         if (!order) {
