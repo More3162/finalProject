@@ -4,7 +4,7 @@ const Customer = require('../models/Users');
 const Restaurant = require('../models/Restaurant');
 const generateRandomId = require('../helpers/generateRandomId');
 const Address = require('../helpers/mongodb/Address');
-const { string, required } = require('joi');
+const { string, required, defaults } = require('joi');
 
 
 // הגדרת סכמה להזמנה
@@ -21,14 +21,14 @@ const orderSchema = new mongoose.Schema({
     },
     items: [
         {
-            /*             item_id: {
-                            type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
-                            ref: "MenuItem",
-                            required: true
-                        }, */
+            menuItem_id: {
+                type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
+                ref: "MenuItem",
+                required: true
+            },
             name: {
                 type: String,
-                required: true
+                default: ""
             },
             quantity: {
                 type: Number,
@@ -37,10 +37,14 @@ const orderSchema = new mongoose.Schema({
             },
             price: {
                 type: Number,
-                required: true
+                default: 0
             }
         },
     ],
+    totalPrice: {
+        type: Number,
+        default: 0
+    },
     status: {
         type: String,
         enum: ['Pending', 'In Process', 'Completed', 'Cancelled'], // סטטוס ההזמנה
@@ -53,4 +57,5 @@ const orderSchema = new mongoose.Schema({
     deliveryAddress: Address, //למשוך את הכתובת מהלקוח
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('Order', orderSchema);
+module.exports = Order;

@@ -84,3 +84,21 @@ const Customers = [
         "phone_number": "050-9422223"
     },
 ]
+
+
+const orders = [
+    {
+        "customer_id": "67024afa4b0a16445d892df0",
+        "restaurant_id": "66f54ca8da781b389739ffa5",
+        "items": [
+            {
+                "menuItem_id": "67022fa0064a8d7ee2c2655f",
+                "quantity": 1
+            },
+            {
+                "menuItem_id": "6702419bc545aff4320316bd",
+                "quantity": 1
+            }
+        ]
+    }
+]

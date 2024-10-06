@@ -14,18 +14,19 @@ exports.register = async (newCustomer, req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (email, password) => {
     try {
-        const customer = await Customer.findOne({ email: req.body.email });
-        if (!customer) return res.status(400).json({ message: 'Invalid credentials' });
+        const customer = await Customer.findOne({ email });
+        if (!customer) throw new Error("user NOT found")
 
-        const isMatch = await bcrypt.compare(req.body.password, customer.password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+        const isMatch = await bcrypt.compare(password, customer.password);
+        if (!isMatch) throw new Error("Incorrect password")
 
         const token = jwt.sign({ id: customer._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
+
+        return token;
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        return Error;
     }
 };
 

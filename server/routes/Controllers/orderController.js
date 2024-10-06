@@ -6,21 +6,28 @@ const authMiddleware = require('../../middlewares/authMiddleware'); // אימו�
 
 
 // יצירת הזמנה חדשה
-router.post('/newOrder', authMiddleware, orderController.createOrder);
+router.post('/newOrder', async (req, res) => {
+    try {
+        const newOrder = await orderController.createOrder(req.body);
+        res.status(201).json(newOrder);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
+
+/* 
 // קבלת הזמנה על פי סטטוס הזמנה
 router.get('/status', authMiddleware, orderController.getOrdersByStatus);
 
 // קבלת כל ההזמנות
 router.put('/', authMiddleware, orderController.getOrders);
 
-// עדכון פריטים בהזמנה
-router.patch('/:id', authMiddleware, orderController.updateOrderItems);
 
 // עדכון סטטוס הזמנה
 router.patch('/:id', authMiddleware, orderController.updateOrderStatus);
 
 // מחיקת הזמנה לפי מזהה הזמנה
 router.delete('/:id', authMiddleware, orderController.deleteOrder);
-
+ */
 module.exports = router;

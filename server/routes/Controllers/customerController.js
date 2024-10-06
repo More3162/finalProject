@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const customerController = require('../../accessDataService/customerAccessDataService');
-const { cache } = require('joi');
+
 
 // מסלולים ללקוחות
 router.post('/register', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const customerLogin = await customerController.login(req.body.email, req.body.password);
-        res.status(200).json(customerLogin);
+        res.status(200).json(customerLogin)
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
