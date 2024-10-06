@@ -55,3 +55,32 @@ const Items = [
         "is_available": true
     }
 ]
+
+const Customers = [
+    {
+        "first_name": "Mor",
+        "last_name": "Rachmani",
+        "email": "mor@test.com",
+        "password": "Mor123!",
+        "address": {
+            "country": "Israel",
+            "city": "Tel Aviv",
+            "street": "Arlozerov",
+            "houseNumber": "11",
+        },
+        "phone_number": "050-9455553"
+    },
+    {
+        "first_name": "Ben",
+        "last_name": "Or",
+        "email": "ben@test.com",
+        "password": "Ben123!",
+        "address": {
+            "country": "Israel",
+            "city": "Tel Aviv",
+            "street": "HaRrbaa",
+            "houseNumber": "32"
+        },
+        "phone_number": "050-9422223"
+    },
+]

@@ -39,6 +39,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const deleteItem = await menuController.deleteMenuItem(req, res);
+        console.log(deleteItem);
         res.status(201).json({ message: error.message })
     } catch (error) {
         res.status(400).json({ message: error.message })
