@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const generateRandomId = require('../helpers/generateRandomId');
 const Restaurant = require('./Restaurant');
 const { DEFAULT_VALIDATION } = require('../helpers/mongodb/mongooseValidators');
-const { emit } = require('./Orders');
 
 const menuItemSchema = new mongoose.Schema({
     restaurant_id: {

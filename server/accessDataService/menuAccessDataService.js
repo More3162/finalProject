@@ -1,11 +1,12 @@
 const MenuItem = require('../models/Menu');
 
 // יצירת פריט חדש
-const createMenuItem = async (menuItem, req, res) => {
+const createMenuItem = async (req, res) => {
     try {
         const menuItem = new MenuItem(req.body);
-        await menuItem.save();
         console.log(menuItem);
+        await menuItem.save();
+
         res.status(201).json(menuItem);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -13,31 +14,26 @@ const createMenuItem = async (menuItem, req, res) => {
 };
 
 // עדכון פריט קיים
-/* const updateMenuItem = async (req, res) => {
+const updateMenuItem = async (req, res) => {
     try {
-        // וודא שהבקשה מכילה את המידע הדרוש
-        if (!req.body || Object.keys(req.body).length === 0) {
-            return res.status(400).json({ message: 'Request body cannot be empty' });
-        }
         // עדכון פריט התפריט לפי ה-ID
-        const menuItem = await MenuItem.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true  // מפעיל ולידציות על המידע
-        });
+        const menuItem = await MenuItem.findByIdAndUpdate(req.params.id, req.body)
         // אם פריט התפריט לא נמצא
         if (!menuItem) {
             return res.status(404).json({ message: 'Menu item not found' });
         }
         // החזרת פריט התפריט המעודכן
         res.status(200).json(menuItem);
+        //שומר את הפריט החדש
+        await menuItem.save();
     } catch (error) {
         // טיפול בשגיאות כלליות
         res.status(500).json({ message: 'Server error: ' + error.message });
     }
-}; */
+};
 
 // מחיקת פריט קיים
-/* const deleteMenuItem = async (req, res) => {
+const deleteMenuItem = async (req, res) => {
     try {
         const menuItem = await MenuItem.findByIdAndDelete(req.params.id);
         if (!menuItem) return res.status(404).json({ message: 'Menu item not found' });
@@ -45,20 +41,23 @@ const createMenuItem = async (menuItem, req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-}; */
+};
+
 
 // קריאה לכל הפריטים בתפריט
-/* const getAllMenuItems = async (req, res) => {
+const getAllMenuItems = async (req, res) => {
     try {
-        const menuItems = await MenuItem.find();
+        const { restaurant_id } = req.params
+        const menuItems = await MenuItem.find({ restaurant_id });
         res.json(menuItems);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
- */
 
 module.exports = {
     createMenuItem,
-    //updateMenuItem, deleteMenuItem, getAllMenuItems
+    updateMenuItem,
+    deleteMenuItem,
+    getAllMenuItems
 };

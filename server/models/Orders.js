@@ -21,11 +21,11 @@ const orderSchema = new mongoose.Schema({
     },
     items: [
         {
-            item_id: {
-                type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
-                ref: "MenuItem",
-                required: true
-            },
+            /*             item_id: {
+                            type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
+                            ref: "MenuItem",
+                            required: true
+                        }, */
             name: {
                 type: String,
                 required: true

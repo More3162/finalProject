@@ -12,7 +12,7 @@ router.post('/newOrder', authMiddleware, orderController.createOrder);
 router.get('/status', authMiddleware, orderController.getOrdersByStatus);
 
 // קבלת כל ההזמנות
-router.put('/:id', authMiddleware, orderController.getOrders);
+router.put('/', authMiddleware, orderController.getOrders);
 
 // עדכון פריטים בהזמנה
 router.patch('/:id', authMiddleware, orderController.updateOrderItems);
