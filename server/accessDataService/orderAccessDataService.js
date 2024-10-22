@@ -2,6 +2,7 @@ const { model } = require('mongoose');
 const MenuItem = require('../models/Menu');
 const Order = require('../models/Orders');
 const Customer = require('../models/Users');
+const Restaurant = require('../models/Restaurant')
 
 
 // הוספת הזמנה חדשה
@@ -44,58 +45,63 @@ const createOrder = async (orderDetails) => {
 };
 
 
-//קבלת הזמנה על פי סטטוס הזמנה
-/* const getOrdersByStatus = async (orderDetails) => {
+/* //קבלת הזמנה על פי סטטוס הזמנה
+const getOrdersByStatus = async (req, res) => {
     try {
-        const orders = await Order.find({ status: orderDetails.status });
-        res.json(orders);
+        const orders = await Order.find();
+        return orders.map(orders => _.omit(orders.toObject()))
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }; */
 
-/* // קבלת כל ההזמנות
-exports.getOrders = async (req, res) => {
+// קבלת כל ההזמנות
+const getOrders = async (restaurant_id) => {
     try {
-        const orders = await Order.find();
-        res.json(orders);
+        const restaurant = await Restaurant.findOne({ _id: restaurant_id });
+        if (!restaurant) {
+            throw new Error("Restaurant not found");
+        }
+
+        const orders = await Order.find({ restaurant_id });
+        return orders;
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-}; */
+};
 
 
 // עדכון סטטוס הזמנה
-/* exports.updateOrderStatus = async (req, res) => {
+const updateOrderStatus = async (order_id, newStatus) => {
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(order_id);
         if (!order) {
-            return res.status(404).json({ message: 'Order not found' });
+            throw new Error('Order not found');
         }
-
-        order.status = req.body.status;
+        order.status = newStatus;
         await order.save();
-        res.json(order);
+        return order;
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-}; */
+};
 
 // מחיקת הזמנה
-/* exports.deleteOrder = async (req, res) => {
+const deleteOrder = async (order_id) => {
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findByIdAndDelete(order_id); // Correct query
         if (!order) {
-            return res.status(404).json({ message: 'Order not found' });
+            throw new Error('Order not found');
         }
-
-        await order.remove();
-        res.json({ message: 'Order deleted' });
+        return { message: 'Order deleted' }; // Return success message
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        throw new Error(error.message); // Throw error for route handler to catch
     }
-}; */
+};
 
 module.exports = {
     createOrder,
+    getOrders,
+    updateOrderStatus,
+    deleteOrder
 };

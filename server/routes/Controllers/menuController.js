@@ -1,6 +1,7 @@
 const express = require('express');
 const menuController = require('../../accessDataService/menuAccessDataService');
 const router = express.Router();
+const authMiddleware = require('../../middlewares/authMiddleware')
 
 //post new item
 router.post('/newItem', async (req, res) => {
@@ -24,7 +25,7 @@ router.get('/:restaurant_id', async (req, res) => {
 });
 
 //update item
-router.put('/:id', async (req, res) => {
+router.put('/:id', authMiddleware, async (req, res) => {
     try {
         const updateItem = await menuController.updateMenuItem(req, res);
         res.status(201).json(updateItem);

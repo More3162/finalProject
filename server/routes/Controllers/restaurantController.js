@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.post('/resRegister', async (req, res) => {
     try {
-        console.log("hey!");
         const newRestaurant = await restaurantController.resRegister(req.body, req, res);
         res.status(201).json(newRestaurant);
     } catch (error) {
@@ -19,7 +18,6 @@ router.post('/resRegister', async (req, res) => {
 
 router.post('/resLogin', async (req, res) => {
     try {
-        console.log("Res Login OK!")
         const token = await restaurantController.resLogin(req.body.email, req.body.password);
         res.status(200).json({ token });
     } catch (error) {

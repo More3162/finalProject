@@ -18,16 +18,46 @@ router.post('/newOrder', async (req, res) => {
 
 /* 
 // קבלת הזמנה על פי סטטוס הזמנה
-router.get('/status', authMiddleware, orderController.getOrdersByStatus);
+router.get('/status', async (req, res) => {
+    try {
+        const orderStatus = await orderController.getOrdersByStatus(req.body);
+        res.status(201).json(orderStatus);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}); */
+
 
 // קבלת כל ההזמנות
-router.put('/', authMiddleware, orderController.getOrders);
+router.get('/:id', authMiddleware, async (req, res) => {
+    try {
+        const allOrders = await orderController.getOrders(req.params.id)
+        res.status(201).json(allOrders);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
 
 // עדכון סטטוס הזמנה
-router.patch('/:id', authMiddleware, orderController.updateOrderStatus);
+router.patch('/:id', authMiddleware, async (req, res) => {
+    try {
+        const updatedOrder = await orderController.updateOrderStatus(req.params.id, req.body.status);
+        res.status(201).json(updatedOrder)
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
 // מחיקת הזמנה לפי מזהה הזמנה
-router.delete('/:id', authMiddleware, orderController.deleteOrder);
- */
+router.delete('/:id', authMiddleware, async (req, res) => {
+    try {
+        const orderToDelete = await orderController.deleteOrder(req.params.id); // Pass order ID
+        res.status(200).json(orderToDelete); // Use 200 for successful deletion
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 module.exports = router;

@@ -19,14 +19,18 @@ const resRegister = async (newRestaurant, req, res) => {
 const resLogin = async (email, password) => {
     try {
         const restaurant = await Restaurant.findOne({ email: email });
-        if (!restaurant) return res.status(400).json({ message: 'Invalid Email' });
+        if (!restaurant) {
+            throw new Error('Invalid Email'); // Throw error instead of using res
+        }
         const isMatch = await bcrypt.compare(password, restaurant.password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid Password' });
+        if (!isMatch) {
+            throw new Error('Invalid Password'); // Throw error instead of using res
+        }
         const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        return token;
+        return token; // Return the generated token
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        throw new Error(error.message); // Throw error for route handler to catch
     }
-}
+};
 
 module.exports = { resRegister, resLogin };
