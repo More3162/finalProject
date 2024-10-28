@@ -63,6 +63,7 @@ Installation
 https://github.com/More3162/finalProject.git
 
 2. Install dependencies:
+    cd server
     npm install
 
 3. Create a .env file in the root of the project and add your environment variables:
