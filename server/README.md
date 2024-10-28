@@ -76,6 +76,8 @@ PORT = 3000
 
 MONGODB_URI = your_mongodb_connection_string
 
+JWT_SECRET = Your secret Word
+
 ENVIRONMENT=development
 
 
