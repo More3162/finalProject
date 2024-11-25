@@ -7,10 +7,10 @@ exports.register = async (newCustomer, req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const customer = new Customer({ ...req.body, password: hashedPassword });
-        await customer.save(); res.status(201).json({ message: 'Customer created' });
+        await customer.save();
         return _.pick(newCustomer, ['_id', 'name', 'email']);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        return new Error();
     }
 };
 
@@ -26,9 +26,16 @@ exports.login = async (email, password) => {
 
         return token;
     } catch (error) {
-        return Error;
+        return new Error();
     }
 };
 
-
-
+exports.getCustomer = async (id) => {
+    try {
+        const customer = await Customer.findById(id);
+        if (!customer) throw new Error("user NOT found")
+        return _.pick(customer, ['_id', 'name', 'email']);
+    } catch (error) {
+        return new Error();
+    }
+};

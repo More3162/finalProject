@@ -33,4 +33,14 @@ const resLogin = async (email, password) => {
     }
 };
 
-module.exports = { resRegister, resLogin };
+const getRes = async (id) => {
+    try {
+        const res = await Restaurant.findById(id);
+        if (!res) throw new Error("restaurant NOT found")
+        return _.pick(res, ['_id', 'name', 'email']);
+    } catch (error) {
+        return new Error();
+    }
+};
+
+module.exports = { getRes, resRegister, resLogin };
