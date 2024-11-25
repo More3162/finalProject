@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
-import AuthForm from './components/AuthForm';
-import CustomerDashboard from './components/CustomerDashboard';
-import RestaurantDashboard from './components/RestaurantDashboard';
+import { CssBaseline, ThemeProvider, createTheme, Button } from '@mui/material';
+import AppRouter from './Router';
 
 const App = () => {
-  const [page, setPage] = useState('auth');
-  const [authType, setAuthType] = useState('login');
+    const [mode, setMode] = useState('dark');
 
-  const renderPage = () => {
-    switch (page) {
-      case 'customer':
-        return <CustomerDashboard />;
-      case 'restaurant':
-        return <RestaurantDashboard />;
-      default:
-        return (
-          <AuthForm
-            type={authType}
-            onSwitch={() => setAuthType(authType === 'login' ? 'register' : 'login')}
-          />
-        );
-    }
-  };
+    const theme = createTheme({
+        palette: {
+            mode,
+            background: {
+                default: mode === 'dark' ? '#2C2C2C' : '#FFFFFF',
+            },
+            text: {
+                primary: mode === 'dark' ? '#FFF' : '#000',
+            },
+        },
+    });
 
-  return renderPage();
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <header style={{ padding: '10px', textAlign: 'right', background: theme.palette.background.default }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setMode((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+                >
+                    {mode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </Button>
+            </header>
+            <AppRouter />
+        </ThemeProvider>
+    );
 };
 
 export default App;
