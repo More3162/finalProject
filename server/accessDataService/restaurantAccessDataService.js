@@ -25,7 +25,6 @@ const resRegister = async (newRestaurantData) => {
     }
 }
 
-
 // כניסת מסעדה קיימת
 const resLogin = async (email, password) => {
     try {
