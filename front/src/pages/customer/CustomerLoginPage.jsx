@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { customerLoginSchema } from '../../validation/customer.validation';
-import { loginCustomer } from '../../services/customer.service';
-import { useAuth } from '../../providers/AuthProvider';
+import { useState } from "react";
+import { customerLoginSchema } from "../../validation/customer.validation";
+import { loginCustomer } from "../../services/customer.service";
+import { useAuth } from "../../providers/AuthProvider";
+import { Box, Grid, TextField, Button, Typography } from "@mui/material";
 
 const CustomerLoginPage = () => {
-  const [loginData, setLoginData] = useState({ email: '', password: '' });
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState(true);
   const { setToken } = useAuth();
 
@@ -13,7 +14,7 @@ const CustomerLoginPage = () => {
       setLoginData((prev) => {
         const loginData = { ...prev, [name]: e.target.value };
         const { error } = customerLoginSchema.validate(loginData);
-        setError(error ? error.details[0].message : '');
+        setError(error ? error.details[0].message : "");
         return loginData;
       });
     };
@@ -21,27 +22,59 @@ const CustomerLoginPage = () => {
 
   const handleLogin = async () => {
     const token = await loginCustomer(loginData);
-    setToken('customer ' + token);
+    setToken("customer " + token);
   };
 
   return (
-    <form noValidate>
+    <Box component="form" noValidate sx={{ maxWidth: 400, mx: "auto", mt: 4 }}>
+      <Grid container spacing={2}>
+        {/* Email Field */}
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            type="email"
+            label="Email"
+            value={loginData.email}
+            onInput={handleInput("email")}
+            placeholder="email"
+            variant="outlined"
+          />
+        </Grid>
 
-      <div>
-        <input type="email" value={loginData.email} onInput={handleInput('email')} placeholder="email" />
-      </div>
+        {/* Password Field */}
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            type="password"
+            label="Password"
+            value={loginData.password}
+            onInput={handleInput("password")}
+            placeholder="password"
+            variant="outlined"
+          />
+        </Grid>
 
-      <div>
-        <input type="password" value={loginData.password} onInput={handleInput('password')} placeholder="password" />
-      </div>
+        {/* Error Message */}
+        {error && (
+          <Grid item xs={12}>
+            <Typography color="error">{error}</Typography>
+          </Grid>
+        )}
 
-      {error && <div>{error}</div>}
-
-      <button type="button" onClick={handleLogin} disabled={!!error}>
-        Login
-      </button>
-
-    </form>
+        {/* Login Button */}
+        <Grid item xs={12}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={handleLogin}
+            disabled={!!error}
+          >
+            Login
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

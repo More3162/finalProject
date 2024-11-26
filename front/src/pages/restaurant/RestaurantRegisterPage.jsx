@@ -2,8 +2,7 @@ import { useState } from "react";
 import { getEmptyRestaurant, normalizeRestaurant } from "../../models/restaurant.model";
 import { restaurantRegisterSchema } from "../../validation/restaurant.validation";
 import { registerRestaurant } from "../../services/restaurant.service";
-
-
+import { Box, Grid, TextField, Button, Typography } from "@mui/material";
 
 const RestaurantRegisterPage = () => {
     const [registerData, setRegisterData] = useState(getEmptyRestaurant());
@@ -15,7 +14,7 @@ const RestaurantRegisterPage = () => {
                 const registerData = { ...prev, [name]: e.target.value }; // flat data
                 const restaurant = normalizeRestaurant(registerData); // inflated data
                 const { error } = restaurantRegisterSchema.validate(restaurant);
-                setError(error ? error.details[0].message : '');
+                setError(error ? error.details[0].message : "");
                 return registerData;
             });
         };
@@ -28,76 +27,121 @@ const RestaurantRegisterPage = () => {
     };
 
     return (
-        <form noValidate>
-
-            <div>
-                <input type="text" value={registerData.name} onInput={handleInput('name')} placeholder="name" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.country} onInput={handleInput('country')} placeholder="country" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.city} onInput={handleInput('city')} placeholder="city" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.street} onInput={handleInput('street')} placeholder="street" />
-            </div>
-
-            <div>
-                <input type="number" value={registerData.houseNumber} onInput={handleInput('houseNumber')} placeholder="house number" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.phone} onInput={handleInput('phone')} placeholder="phone" />
-            </div>
-
-            <div>
-                <input type="email" value={registerData.email} onInput={handleInput('email')} placeholder="email" />
-            </div>
-
-            <div>
-                <input type="password" value={registerData.password} onInput={handleInput('password')} placeholder="password" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.monday} onInput={handleInput('monday')} placeholder="Opening Hours monday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.tuesday} onInput={handleInput('tuesday')} placeholder="Opening Hours tuesday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.wednesday} onInput={handleInput('wednesday')} placeholder="Opening Hours wednesday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.thursday} onInput={handleInput('thursday')} placeholder="Opening Hours thursday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.friday} onInput={handleInput('friday')} placeholder="Opening Hours  friday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.saturday} onInput={handleInput('saturday')} placeholder="Opening Hours saturday" />
-            </div>
-
-            <div>
-                <input type="text" value={registerData.sunday} onInput={handleInput('sunday')} placeholder="Opening Hours  sunday" />
-            </div>
-
-            {error && <div>{error}</div>}
-
-            <button type="button" onClick={handleRegister} disabled={!!error}>
-                Register
-            </button>
-
-        </form>
-
+        <Box component="form" noValidate sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Name"
+                        value={registerData.name}
+                        onInput={handleInput("name")}
+                        placeholder="name"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Country"
+                        value={registerData.country}
+                        onInput={handleInput("country")}
+                        placeholder="country"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="City"
+                        value={registerData.city}
+                        onInput={handleInput("city")}
+                        placeholder="city"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Street"
+                        value={registerData.street}
+                        onInput={handleInput("street")}
+                        placeholder="street"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        type="number"
+                        label="House Number"
+                        value={registerData.houseNumber}
+                        onInput={handleInput("houseNumber")}
+                        placeholder="house number"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Phone"
+                        value={registerData.phone}
+                        onInput={handleInput("phone")}
+                        placeholder="phone"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        type="email"
+                        label="Email"
+                        value={registerData.email}
+                        onInput={handleInput("email")}
+                        placeholder="email"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        type="password"
+                        label="Password"
+                        value={registerData.password}
+                        onInput={handleInput("password")}
+                        placeholder="password"
+                        variant="outlined"
+                    />
+                </Grid>
+                {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
+                    <Grid item xs={12} key={day}>
+                        <TextField
+                            fullWidth
+                            label={`Opening Hours ${day}`}
+                            value={registerData[day]}
+                            onInput={handleInput(day)}
+                            placeholder={`Opening Hours ${day}`}
+                            variant="outlined"
+                        />
+                    </Grid>
+                ))}
+                {error && (
+                    <Grid item xs={12}>
+                        <Typography color="error">{error}</Typography>
+                    </Grid>
+                )}
+                <Grid item xs={12}>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={handleRegister}
+                        disabled={!!error}
+                    >
+                        Register
+                    </Button>
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 
