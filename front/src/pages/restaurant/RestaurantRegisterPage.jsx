@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getEmptyRestaurant, normalizeRestaurant } from "../../models/restaurant.model";
 import { restaurantRegisterSchema } from "../../validation/restaurant.validation";
 import { registerRestaurant } from "../../services/restaurant.service";
-import { Box, Grid, TextField, Button, Typography } from "@mui/material";
+import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
 
 const RestaurantRegisterPage = () => {
     const [registerData, setRegisterData] = useState(getEmptyRestaurant());
@@ -27,120 +27,179 @@ const RestaurantRegisterPage = () => {
     };
 
     return (
-        <Box component="form" noValidate sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Name"
-                        value={registerData.name}
-                        onInput={handleInput("name")}
-                        placeholder="name"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Country"
-                        value={registerData.country}
-                        onInput={handleInput("country")}
-                        placeholder="country"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="City"
-                        value={registerData.city}
-                        onInput={handleInput("city")}
-                        placeholder="city"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Street"
-                        value={registerData.street}
-                        onInput={handleInput("street")}
-                        placeholder="street"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        type="number"
-                        label="House Number"
-                        value={registerData.houseNumber}
-                        onInput={handleInput("houseNumber")}
-                        placeholder="house number"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Phone"
-                        value={registerData.phone}
-                        onInput={handleInput("phone")}
-                        placeholder="phone"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        type="email"
-                        label="Email"
-                        value={registerData.email}
-                        onInput={handleInput("email")}
-                        placeholder="email"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        type="password"
-                        label="Password"
-                        value={registerData.password}
-                        onInput={handleInput("password")}
-                        placeholder="password"
-                        variant="outlined"
-                    />
-                </Grid>
-                {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
-                    <Grid item xs={12} key={day}>
-                        <TextField
-                            fullWidth
-                            label={`Opening Hours ${day}`}
-                            value={registerData[day]}
-                            onInput={handleInput(day)}
-                            placeholder={`Opening Hours ${day}`}
-                            variant="outlined"
-                        />
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "100vh",
+                backgroundColor: "background.default",
+                color: "text.primary",
+            }}
+        >
+            {/* כותרת עמוד */}
+            <Typography variant="h3" sx={{ mb: 4, fontWeight: "bold" }}>
+                Restaurant Registration
+            </Typography>
+
+            {/* טופס בעיצוב חדש */}
+            <Paper
+                elevation={3}
+                sx={{
+                    p: 4,
+                    maxWidth: 800,
+                    width: "100%",
+                    borderRadius: 2,
+                }}
+            >
+                <Box component="form" noValidate>
+                    <Grid container spacing={2}>
+                        {/* Name */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                label="Restaurant Name"
+                                value={registerData.name}
+                                onInput={handleInput("name")}
+                                placeholder="Enter restaurant name"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Country */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                label="Country"
+                                value={registerData.country}
+                                onInput={handleInput("country")}
+                                placeholder="Enter country"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* City */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                label="City"
+                                value={registerData.city}
+                                onInput={handleInput("city")}
+                                placeholder="Enter city"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Street */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                label="Street"
+                                value={registerData.street}
+                                onInput={handleInput("street")}
+                                placeholder="Enter street"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* House Number */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                type="number"
+                                label="House Number"
+                                value={registerData.houseNumber}
+                                onInput={handleInput("houseNumber")}
+                                placeholder="Enter house number"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Phone */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                label="Phone"
+                                value={registerData.phone}
+                                onInput={handleInput("phone")}
+                                placeholder="Enter phone number"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Email */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                type="email"
+                                label="Email"
+                                value={registerData.email}
+                                onInput={handleInput("email")}
+                                placeholder="Enter email"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Password */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                type="password"
+                                label="Password"
+                                value={registerData.password}
+                                onInput={handleInput("password")}
+                                placeholder="Enter password"
+                                variant="outlined"
+                            />
+                        </Grid>
+
+                        {/* Opening Hours */}
+                        {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
+                            <Grid item xs={12} sm={6} key={day}>
+                                <TextField
+                                    fullWidth
+                                    label={`Opening Hours (${day})`}
+                                    value={registerData[day]}
+                                    onInput={handleInput(day)}
+                                    placeholder={`Enter opening hours for ${day}`}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                        ))}
+
+                        {/* Error Message */}
+                        {error && (
+                            <Grid item xs={12}>
+                                <Typography color="error" align="center">
+                                    {error}
+                                </Typography>
+                            </Grid>
+                        )}
+
+                        {/* Register Button */}
+                        <Grid item xs={12}>
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={handleRegister}
+                                disabled={!!error}
+                                sx={{
+                                    py: 1.5,
+                                    transition: "0.3s",
+                                    "&:hover": {
+                                        backgroundColor: "#1976d2",
+                                        color: "#ffffff",
+                                    },
+                                }}
+                            >
+                                Register
+                            </Button>
+                        </Grid>
                     </Grid>
-                ))}
-                {error && (
-                    <Grid item xs={12}>
-                        <Typography color="error">{error}</Typography>
-                    </Grid>
-                )}
-                <Grid item xs={12}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={handleRegister}
-                        disabled={!!error}
-                    >
-                        Register
-                    </Button>
-                </Grid>
-            </Grid>
+                </Box>
+            </Paper>
         </Box>
     );
 };

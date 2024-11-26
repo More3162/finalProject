@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Typography, Link, useMediaQuery } from '@mui/material';
+import { Box, Typography, Button, useMediaQuery } from '@mui/material';
+import { Link } from 'react-router-dom'; // Link from react-router-dom
+import { ROUTES } from '../Router'; // Import the ROUTES
 
 const Footer = () => {
     const isMobile = useMediaQuery('(max-width:600px)');
@@ -16,7 +18,7 @@ const Footer = () => {
             }}
         >
             <Typography variant="body2" sx={{ mb: 1 }}>
-                &copy; {new Date().getFullYear()} My Restaurant. All rights reserved.
+                &copy; {new Date().getFullYear()} Eat Now. All rights reserved.
             </Typography>
             <Box
                 sx={{
@@ -27,15 +29,15 @@ const Footer = () => {
                     gap: 2,
                 }}
             >
-                <Link href="/about" color="inherit" underline="hover">
+                <Button component={Link} to={ROUTES.about} color="inherit">
                     About Us
-                </Link>
-                <Link href="/privacy" color="inherit" underline="hover">
+                </Button>
+                <Button component={Link} to={ROUTES.privacy} color="inherit">
                     Privacy Policy
-                </Link>
-                <Link href="/contact" color="inherit" underline="hover">
+                </Button>
+                <Button component={Link} to={ROUTES.contact} color="inherit">
                     Contact
-                </Link>
+                </Button>
             </Box>
         </Box>
     );

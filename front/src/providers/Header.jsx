@@ -39,15 +39,19 @@ const Header = ({ isDarkMode, toggleDarkMode, userType }) => {
         <AppBar position="static" color="primary">
             <Toolbar>
                 {/* לוגו */}
-                <Typography
-                    variant="h6"
-                    component={Link}
-                    to="/"
-                    sx={{ flexGrow: 1, textDecoration: "none", color: "inherit" }}
-                >
-                    My Website
-                </Typography>
 
+                <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+                    <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+                        <img
+                            src="/public/images/EatNowLogo.png"
+                            alt="Logo"
+                            style={{ height: 40, marginRight: 8 }}
+                        />
+                        <Typography variant="h6" sx={{ color: "inherit" }}>
+                            Eat Now
+                        </Typography>
+                    </Link>
+                </Box>
                 {/* כפתור מצב כהה/בהיר */}
                 <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
                     <Typography variant="body2" sx={{ mr: 1 }}>

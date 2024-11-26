@@ -3,14 +3,12 @@ import { useState, useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import Router from "./Router";
 import AuthProvider from "./providers/AuthProvider";
-import Header from "./providers/Header";
-import Footer from "./providers/Footer";
 
 const App = () => {
   // מצב כהה/בהיר - קריאה מ-localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("darkMode");
-    return savedMode === "true"; // המרה למצב בוליאני
+    return savedMode === "true"; // החלפה למצב בוליאני
   });
 
   // יצירת Theme דינמי
@@ -25,6 +23,25 @@ const App = () => {
           secondary: {
             main: isDarkMode ? "#f48fb1" : "#d81b60",
           },
+          background: {
+            default: isDarkMode ? "#121212" : "#ffffff",
+            paper: isDarkMode ? "#1d1d1d" : "#f5f5f5",
+          },
+          text: {
+            primary: isDarkMode ? "#ffffff" : "#000000",
+            secondary: isDarkMode ? "#aaaaaa" : "#333333",
+          },
+        },
+        typography: {
+          h1: {
+            color: isDarkMode ? "#ffffff" : "#000000", // כותרות גדולות
+          },
+          h2: {
+            color: isDarkMode ? "#ffffff" : "#000000", // כותרות בינוניות
+          },
+          body1: {
+            color: isDarkMode ? "#ffffff" : "#000000", // טקסט רגיל
+          },
         },
       }),
     [isDarkMode]
@@ -34,7 +51,7 @@ const App = () => {
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => {
       const newMode = !prev;
-      localStorage.setItem("darkMode", newMode); // שמירת המצב ב-localStorage
+      localStorage.setItem("darkMode", newMode);
       return newMode;
     });
   };
@@ -44,9 +61,8 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <AuthProvider>
-          <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          <Router />
-          <Footer />
+          {/* העברת isDarkMode ו-toggleDarkMode ל-Router */}
+          <Router isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>
