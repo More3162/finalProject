@@ -21,6 +21,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const newRestaurant = await restaurantController.resRegister(req.body, req, res);
+        console.log("New Restaurant add")
         res.status(201).json(newRestaurant);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -32,6 +33,7 @@ router.post('/login', async (req, res) => {
     try {
         const token = await restaurantController.resLogin(req.body.email, req.body.password);
         res.status(200).json({ token });
+
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

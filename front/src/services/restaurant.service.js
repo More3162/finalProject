@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./token.service";
 
 const baseUrl = import.meta.env.VITE_BASE_URL + '/restaurant';
 
