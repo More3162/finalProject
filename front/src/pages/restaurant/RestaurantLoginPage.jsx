@@ -20,10 +20,17 @@ const RestaurantLoginPage = () => {
         };
     };
 
+
     const handleLogin = async () => {
-        const token = await loginRestaurant(loginData);
-        setToken("restaurant " + token);
+        try {
+            const token = await loginRestaurant(loginData);
+            setToken("restaurant " + token);
+        } catch (err) {
+            console.error("Login failed:", err);
+            setError("Failed to log in. Please check your credentials.");
+        }
     };
+
 
     return (
         <Box
@@ -92,11 +99,9 @@ const RestaurantLoginPage = () => {
 
                         {/* Error Message */}
                         {error && (
-                            <Grid item xs={12}>
-                                <Typography color="error" align="center">
-                                    {error}
-                                </Typography>
-                            </Grid>
+                            <Typography color="error">
+                                {typeof error === "string" && error.length > 0 ? error : ""}
+                            </Typography>
                         )}
 
                         {/* Login Button */}

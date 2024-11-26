@@ -82,12 +82,11 @@ const CustomerLoginPage = () => {
 
             {/* Error Message */}
             {error && (
-              <Grid item xs={12}>
-                <Typography color="error" align="center">
-                  {error}
-                </Typography>
-              </Grid>
+              <Typography color="error" align="center">
+                {typeof error === "string" && error.length > 0 ? error : ""}
+              </Typography>
             )}
+
 
             {/* Login Button */}
             <Grid item xs={12}>

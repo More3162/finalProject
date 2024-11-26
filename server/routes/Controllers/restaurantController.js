@@ -20,24 +20,28 @@ router.get('/:id', authMiddleware, async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try {
-        const newRestaurant = await restaurantController.resRegister(req.body, req, res);
-        console.log("New Restaurant add")
+        const newRestaurant = await restaurantController.resRegister(req.body);
+        console.log("New Restaurant added");
         res.status(201).json(newRestaurant);
     } catch (error) {
+        console.error("Error:", error);
         res.status(400).json({ message: error.message });
     }
 });
+
 
 
 router.post('/login', async (req, res) => {
+    console.log("Received data:", req.body);
     try {
         const token = await restaurantController.resLogin(req.body.email, req.body.password);
         res.status(200).json({ token });
-
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        console.error("Login error:", error);
+        res.status(500).json({ message: error.message });
     }
 });
+
 
 
 module.exports = router;

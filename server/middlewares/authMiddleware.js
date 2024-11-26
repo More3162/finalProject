@@ -6,9 +6,11 @@ module.exports = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; // המידע מה-token (כגון מזהה המשתמש)
+        req.user = decoded;
+        console.log("Decoded token user id:", req.user.id);  // לוג של ה-ID מה-token
         next();
     } catch (ex) {
+        console.error("Error decoding token:", ex);  // לוג של שגיאה
         res.status(400).json({ message: 'Invalid token.' });
     }
 };

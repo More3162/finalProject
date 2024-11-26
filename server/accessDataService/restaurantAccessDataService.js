@@ -4,16 +4,27 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 
 // יצירת מסעדה חדשה
-const resRegister = async (newRestaurant, req, res) => {
+const resRegister = async (newRestaurantData) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const newRestaurant = new Restaurant({ ...req.body, password: hashedPassword });
+        // הצפנת הסיסמה
+        const hashedPassword = await bcrypt.hash(newRestaurantData.password, 10);
+
+        // יצירת אובייקט מסעדה עם הסיסמה המוצפנת
+        const newRestaurant = new Restaurant({
+            ...newRestaurantData,
+            password: hashedPassword
+        });
+
+        // שמירת המסעדה למסד נתונים
         await newRestaurant.save();
+
+        // החזרת הנתונים שהמשתמש יכול לקבל, ללא הסיסמה
         return _.pick(newRestaurant, ['_id', 'name', 'email']);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        throw new Error("Error while registering restaurant: " + error.message);
     }
 }
+
 
 // כניסת מסעדה קיימת
 const resLogin = async (email, password) => {
@@ -34,13 +45,14 @@ const resLogin = async (email, password) => {
 };
 
 const getRes = async (id) => {
-    try {
-        const res = await Restaurant.findById(id);
-        if (!res) throw new Error("restaurant NOT found")
-        return _.pick(res, ['_id', 'name', 'email']);
-    } catch (error) {
-        return new Error();
+    console.log("Getting restaurant with id:", id);
+    const restaurant = await Restaurant.findById(id);
+    if (!restaurant) {
+        throw new Error("Restaurant not found");
     }
+    return restaurant;
 };
+
+
 
 module.exports = { getRes, resRegister, resLogin };

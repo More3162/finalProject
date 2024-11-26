@@ -170,12 +170,11 @@ const RestaurantRegisterPage = () => {
 
                         {/* Error Message */}
                         {error && (
-                            <Grid item xs={12}>
-                                <Typography color="error" align="center">
-                                    {error}
-                                </Typography>
-                            </Grid>
+                            <Typography color="error" align="center">
+                                {typeof error === "string" ? error : String(error) || "An error occurred"}
+                            </Typography>
                         )}
+
 
                         {/* Register Button */}
                         <Grid item xs={12}>
