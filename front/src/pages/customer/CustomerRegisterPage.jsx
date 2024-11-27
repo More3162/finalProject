@@ -169,7 +169,7 @@ const CustomerRegisterPage = () => {
             {/* Error Message */}
             {error && (
               <Typography color="error" align="center">
-                {typeof error === "string" ? error : String(error) || "An error occurred"}
+                {typeof error === "string" && error}
               </Typography>
             )}
 

@@ -83,7 +83,7 @@ const CustomerLoginPage = () => {
             {/* Error Message */}
             {error && (
               <Typography color="error" align="center">
-                {typeof error === "string" && error.length > 0 ? error : ""}
+                {typeof error === "string" && error}
               </Typography>
             )}
 

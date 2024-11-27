@@ -7,17 +7,18 @@ const Restaurant = {
         "houseNumber": 120
     },
     "phone": "050-0000000",
-    "email": "dixie@test.com",
-    "password": "Abc123!",
+    "email": "test@test.com",
+     { email: 'rasd@asd.asd', password: 'Asd123!' }
+"password": "Abc1234!",
     "opening_hours": {
-        "monday": "24/7",
+    "monday": "24/7",
         "tuesday": "24/7",
-        "wednesday": "24/7",
-        "thursday": "24/7",
-        "friday": "24/7",
-        "saturday": "24/7",
-        "sunday": "24/7"
-    }
+            "wednesday": "24/7",
+                "thursday": "24/7",
+                    "friday": "24/7",
+                        "saturday": "24/7",
+                            "sunday": "24/7"
+}
 }
 
 {

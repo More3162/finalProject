@@ -43,11 +43,11 @@ const Header = ({ isDarkMode, toggleDarkMode, userType }) => {
                 <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
                     <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
                         <img
-                            src="/public/images/EatNowLogo.png"
+                            src="/public/images/eatNowLogoHD.png"
                             alt="Logo"
-                            style={{ height: 40, marginRight: 8 }}
+                            style={{ height: 100, marginRight: 8 }}
                         />
-                        <Typography variant="h6" sx={{ color: "inherit" }}>
+                        <Typography variant="h6" sx={{ color: "inherit", textDecoration: "none" }}>
                             Eat Now
                         </Typography>
                     </Link>
