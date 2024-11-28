@@ -4,7 +4,7 @@ const router = express.Router();
 const authMiddleware = require('../../middlewares/authMiddleware')
 
 //post new item
-router.post('/newItem', async (req, res) => {
+router.post('/newItem', authMiddleware, async (req, res) => {
     try {
         const newItem = await menuController.createMenuItem(req, res);
         res.status(201).json(newItem);
@@ -41,12 +41,10 @@ router.delete('/:id', async (req, res) => {
     try {
         const deleteItem = await menuController.deleteMenuItem(req, res);
         console.log(deleteItem);
-        res.status(201).json({ message: error.message })
+        res.status(201).json({ message: 'OK' })
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
 });
-
-
 
 module.exports = router;

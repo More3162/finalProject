@@ -5,7 +5,7 @@ export const getEmptyRestaurant = () => {
         city: '',
         street: '',
         houseNumber: '',
-        phone_number: '',
+        phone: '',
         email: '',
         password: '',
         monday: '',
@@ -18,26 +18,35 @@ export const getEmptyRestaurant = () => {
     };
 };
 
-export const normalizeRestaurant = (RestaurantData) => {
+export const normalizeRestaurant = (restaurantData) => {
     return {
-        name: RestaurantData.name,
+        name: restaurantData.name,
         address: {
-            country: RestaurantData.country,
-            city: RestaurantData.city,
-            street: RestaurantData.street,
-            houseNumber: RestaurantData.houseNumber
+            country: restaurantData.country,
+            city: restaurantData.city,
+            street: restaurantData.street,
+            houseNumber: restaurantData.houseNumber
         },
-        phone: RestaurantData.phone,
-        email: RestaurantData.email,
-        password: RestaurantData.password,
+        phone: restaurantData.phone,
+        email: restaurantData.email,
+        password: restaurantData.password,
         opening_hours: {
-            monday: RestaurantData.monday,
-            tuesday: RestaurantData.tuesday,
-            wednesday: RestaurantData.wednesday,
-            thursday: RestaurantData.thursday,
-            friday: RestaurantData.friday,
-            saturday: RestaurantData.saturday,
-            sunday: RestaurantData.sunday
+            monday: restaurantData.monday,
+            tuesday: restaurantData.tuesday,
+            wednesday: restaurantData.wednesday,
+            thursday: restaurantData.thursday,
+            friday: restaurantData.friday,
+            saturday: restaurantData.saturday,
+            sunday: restaurantData.sunday
         },
+    };
+};
+
+export const normalizeMenuItem = (menuItemData) => {
+    return {
+        name: menuItemData.name,
+        category: menuItemData.category,
+        price: menuItemData.price,
+        description: menuItemData.description
     };
 };

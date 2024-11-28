@@ -20,15 +20,14 @@ const AuthProvider = ({ children }) => {
     const getUser = async () => {
       if (userType === 'customer') {
         const user = await getCustomer(id);
-        setUser(user);
+        setUser({ ...user, type: 'customer' });
       } else if (userType === 'restaurant') {
         const user = await getRestaurant(id);
-        setUser(user);
+        setUser({ ...user, type: 'restaurant' });
       } else {
         setUser(null);
       }
     }
-
     getUser();
   }, [token]);
 

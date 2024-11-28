@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { customerRegisterSchema } from "../../validation/customer.validation";
-import { registerCustomer } from "../../services/customer.service";
+import { loginCustomer, registerCustomer } from "../../services/customer.service";
 import { getEmptyCustomer, normalizeCustomer } from "../../models/customer.model";
 import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
+import { useAuth } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 
 const CustomerRegisterPage = () => {
   const [registerData, setRegisterData] = useState(getEmptyCustomer());
   const [error, setError] = useState(true);
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
 
   const handleInput = (name) => {
     return (e) => {
@@ -22,8 +27,10 @@ const CustomerRegisterPage = () => {
 
   const handleRegister = async () => {
     const customer = normalizeCustomer(registerData);
-    const token = await registerCustomer(customer);
-    console.log(token);
+    await registerCustomer(customer);
+    const token = await loginCustomer(registerData);
+    setToken('customer ' + token);
+    navigate('/');
   };
 
   return (

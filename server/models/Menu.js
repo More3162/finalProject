@@ -12,7 +12,7 @@ const menuItemSchema = new mongoose.Schema({
     name: DEFAULT_VALIDATION,
     category: {
         type: String,
-        enum: ["Main", "starters", "dessert"], // הערכים המותרים
+        enum: ["Main", "Starters", "Dessert"], // הערכים המותרים
         required: true
     },
     price: { type: Number, required: true },

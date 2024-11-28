@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getToken } from "./token.service";
+
+
 
 const baseUrl = import.meta.env.VITE_BASE_URL + '/customer';
 
@@ -15,8 +16,8 @@ const loginCustomer = async ({ email, password }) => {
 };
 
 const registerCustomer = async (customerData) => {
-  const customer = await axios.post(baseUrl + '/register', customerData);
-  return customer;
+  const { data } = await axios.post(baseUrl + '/register', customerData);
+  return data;
 };
 
 export { getCustomer, loginCustomer, registerCustomer };

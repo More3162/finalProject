@@ -7,7 +7,8 @@ import HomePage from "./pages/general/HomePage";
 import AboutUs from "./pages/general/AboutUs";
 import PrivacyPolicy from "./pages/general/PrivacyPolicy";
 import Contact from "./pages/general/Contact";
-import Layout from "./providers/Layout"; // Import Layout
+import RestaurantMenuPage from "./pages/restaurant/RestaurantMenuPage";
+import RestaurantMenuItemForm from "./pages/restaurant/RestaurantMenuItemForm";
 
 export const ROUTES = {
   root: "/",
@@ -15,77 +16,55 @@ export const ROUTES = {
   customerRegister: "/customer/register",
   restaurantLogin: "/restaurant/login",
   restaurantRegister: "/restaurant/register",
+  restaurantMenu: "/restaurant/:id/menu",
+  restaurantMenuItemForm: "/restaurant/:restaurantId/menu-item/:id?",
   about: "/about",
   privacy: "/privacy",
   contact: "/contact",
 };
 
-export default function Router({ isDarkMode, toggleDarkMode, userType }) {
+export default function Router() {
   return (
     <Routes>
       <Route
         path={ROUTES.root}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <HomePage />
-          </Layout>
-        }
+        element={<HomePage />}
       />
       <Route
         path={ROUTES.customerLogin}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <CustomerLoginPage />
-          </Layout>
-        }
+        element={<CustomerLoginPage />}
       />
       <Route
         path={ROUTES.customerRegister}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <CustomerRegisterPage />
-          </Layout>
-        }
+        element={<CustomerRegisterPage />}
       />
       <Route
         path={ROUTES.restaurantLogin}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <RestaurantLoginPage />
-          </Layout>
-        }
+        element={<RestaurantLoginPage />}
       />
       <Route
         path={ROUTES.restaurantRegister}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <RestaurantRegisterPage />
-          </Layout>
-        }
+        element={<RestaurantRegisterPage />}
+      />
+      <Route
+        path={ROUTES.restaurantMenu}
+        element={<RestaurantMenuPage />}
+      />
+      <Route
+        path={ROUTES.restaurantMenuItemForm}
+        element={<RestaurantMenuItemForm />}
       />
       <Route
         path={ROUTES.about}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <AboutUs />
-          </Layout>
-        }
+        element={<AboutUs />}
       />
       <Route
         path={ROUTES.privacy}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <PrivacyPolicy />
-          </Layout>
-        }
+        element={<PrivacyPolicy />}
       />
       <Route
         path={ROUTES.contact}
-        element={
-          <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} userType={userType}>
-            <Contact />
-          </Layout>
-        }
+        element={<Contact />}
       />
     </Routes>
   );

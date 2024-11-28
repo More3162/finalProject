@@ -40,5 +40,4 @@ const registerRestaurant = async (restaurantData) => {
   }
 };
 
-
 export { getRestaurant, loginRestaurant, registerRestaurant, handleGetRestaurant };

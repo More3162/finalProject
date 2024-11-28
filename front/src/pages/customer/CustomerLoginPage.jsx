@@ -3,11 +3,13 @@ import { customerLoginSchema } from "../../validation/customer.validation";
 import { loginCustomer } from "../../services/customer.service";
 import { useAuth } from "../../providers/AuthProvider";
 import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CustomerLoginPage = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState(true);
   const { setToken } = useAuth();
+  const navigate = useNavigate();
 
   const handleInput = (name) => {
     return (e) => {
@@ -23,6 +25,7 @@ const CustomerLoginPage = () => {
   const handleLogin = async () => {
     const token = await loginCustomer(loginData);
     setToken("customer " + token);
+    navigate('/');
   };
 
   return (

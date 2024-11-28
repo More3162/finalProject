@@ -36,7 +36,7 @@ const resLogin = async (email, password) => {
         if (!isMatch) {
             throw new Error('Invalid Password'); // Throw error instead of using res
         }
-        const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET);
         return token; // Return the generated token
     } catch (error) {
         throw new Error(error.message); // Throw error for route handler to catch

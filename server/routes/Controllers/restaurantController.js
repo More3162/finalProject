@@ -11,10 +11,10 @@ const router = express.Router();
 //לעשות פונקציה שבה אוכל להגיע לכל המסעדות
 
 // מסעדה ספיציפית 
-router.get('/:id', authMiddleware, async (req, res) => {
+router.get('/:id', /* authMiddleware,*/ async (req, res) => {
     try {
         const { id } = req.params;
-        if (req.user.id !== id) throw new Error();
+        // if (req.user.id !== id) throw new Error();   
         const restaurant = await restaurantController.getRes(id);
         res.status(200).json(restaurant);
     } catch (error) {
