@@ -195,6 +195,22 @@ const RestaurantRegisterPage = () => {
                             >
                                 Register
                             </Button>
+                            <Grid item xs={12}>
+                                <Button
+                                    fullWidth
+                                    variant="text"
+                                    href="/restaurant/login"
+                                    sx={{
+                                        mt: 2,
+                                        color: "text.primary",
+                                        "&:hover": {
+                                            textDecoration: "underline",
+                                        },
+                                    }}
+                                >
+                                    Have an account? Login here
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Box>

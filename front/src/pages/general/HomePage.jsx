@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Button, Grid, Card, CardContent } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -21,10 +22,10 @@ const HomePage = () => {
                 Discover new restaurants, place orders effortlessly, or manage your business smarter.
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 6 }}>
-                <Button variant="contained" color="primary" size="large">
+                <Button variant="contained" color="primary" size="large" href="/restaurants" >
                     Explore Restaurants
                 </Button>
-                <Button variant="outlined" color="secondary" size="large">
+                <Button variant="outlined" color="secondary" size="large" href="/restaurant/register">
                     Join as a Restaurant
                 </Button>
             </Box>

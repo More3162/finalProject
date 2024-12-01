@@ -21,6 +21,7 @@ export const ROUTES = {
   about: "/about",
   privacy: "/privacy",
   contact: "/contact",
+  restaurants: "/ restaurants",
 };
 
 export default function Router() {

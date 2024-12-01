@@ -3,6 +3,11 @@ import { getToken } from "./token.service";
 
 const baseUrl = import.meta.env.VITE_BASE_URL + '/restaurant';
 
+const getAllRestaurants = async () => {
+  const { data } = await axios.get(baseUrl + '/');
+  return data;
+}
+
 const getRestaurant = async (id) => {
   const token = getToken()?.split(' ')[1];
   const { data } = await axios.get(baseUrl + '/' + id, { headers: { 'x-auth-token': token } });

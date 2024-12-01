@@ -3,6 +3,8 @@ import { restaurantLoginSchema } from "../../validation/restaurant.validation";
 import { loginRestaurant } from "../../services/restaurant.service";
 import { useAuth } from "../../providers/AuthProvider";
 import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
+import { Navigate } from "react-router-dom";
+import { link } from "joi";
 
 const RestaurantLoginPage = () => {
     const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -124,11 +126,27 @@ const RestaurantLoginPage = () => {
                             >
                                 Login
                             </Button>
+                            <Grid item xs={12}>
+                                <Button
+                                    fullWidth
+                                    variant="text"
+                                    href="/restaurant/register"
+                                    sx={{
+                                        mt: 2,
+                                        color: "text.primary",
+                                        "&:hover": {
+                                            textDecoration: "underline",
+                                        },
+                                    }}
+                                >
+                                    Don't have an account? Register here
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Box>
-            </Paper>
-        </Box>
+            </Paper >
+        </Box >
     );
 };
 
