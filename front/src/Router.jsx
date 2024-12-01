@@ -9,6 +9,7 @@ import PrivacyPolicy from "./pages/general/PrivacyPolicy";
 import Contact from "./pages/general/Contact";
 import RestaurantMenuPage from "./pages/restaurant/RestaurantMenuPage";
 import RestaurantMenuItemForm from "./pages/restaurant/RestaurantMenuItemForm";
+import AllRestaurants from "./pages/restaurant/AllRestaurants";
 
 export const ROUTES = {
   root: "/",
@@ -18,10 +19,10 @@ export const ROUTES = {
   restaurantRegister: "/restaurant/register",
   restaurantMenu: "/restaurant/:id/menu",
   restaurantMenuItemForm: "/restaurant/:restaurantId/menu-item/:id?",
+  restaurants: "/ restaurants",
   about: "/about",
   privacy: "/privacy",
   contact: "/contact",
-  restaurants: "/ restaurants",
 };
 
 export default function Router() {
@@ -54,6 +55,10 @@ export default function Router() {
       <Route
         path={ROUTES.restaurantMenuItemForm}
         element={<RestaurantMenuItemForm />}
+      />
+      <Route
+        path={ROUTES.restaurants}
+        element={<AllRestaurants />}
       />
       <Route
         path={ROUTES.about}

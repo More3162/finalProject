@@ -52,6 +52,16 @@ const getRes = async (id) => {
     return restaurant;
 };
 
+// פונקציה להבאת כל המסעדות
+const getAllRes = async () => {
+    console.log("Getting all restaurants");
+    const restaurants = await Restaurant.find();
+    if (!restaurants || restaurants.length === 0) {
+        throw new Error("No restaurants found");
+    }
+    return restaurants;
+};
 
 
-module.exports = { getRes, resRegister, resLogin };
+
+module.exports = { getRes, resRegister, resLogin, getAllRes };

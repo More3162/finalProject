@@ -9,6 +9,16 @@ const router = express.Router();
 
 
 //לעשות פונקציה שבה אוכל להגיע לכל המסעדות
+router.get("/", async (req, res) => {
+    try {
+        const restaurants = await restaurantController.getAllRes();
+        res.status(200).json(restaurants);
+    } catch (error) {
+        console.error("Error fetching all restaurants:", error.message);
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 // מסעדה ספיציפית 
 router.get('/:id', /* authMiddleware,*/ async (req, res) => {
