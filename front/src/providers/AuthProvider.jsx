@@ -15,7 +15,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     storeToken(token);
     const [userType, userToken] = token?.split(' ') || [];
+
     const { id } = userToken ? jwtDecode(userToken) : {};
+
 
     const getUser = async () => {
       if (userType === 'customer') {
