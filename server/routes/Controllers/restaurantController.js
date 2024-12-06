@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
     console.log("Received data:", req.body);
     try {
         const token = await restaurantController.resLogin(req.body.email, req.body.password);
-        res.status(200).json({ token });
+        res.status(200).json(token);
     } catch (error) {
         console.error("Login error:", error);
         res.status(500).json({ message: error.message });

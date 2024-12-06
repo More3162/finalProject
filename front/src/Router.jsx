@@ -19,7 +19,8 @@ export const ROUTES = {
   restaurantRegister: "/restaurant/register",
   restaurantMenu: "/restaurant/:id/menu",
   restaurantMenuItemForm: "/restaurant/:restaurantId/menu-item/:id?",
-  restaurants: "/ restaurants",
+  restaurants: "/restaurants",
+  menu: "/menu",
   about: "/about",
   privacy: "/privacy",
   contact: "/contact",
@@ -59,6 +60,10 @@ export default function Router() {
       <Route
         path={ROUTES.restaurants}
         element={<AllRestaurants />}
+      />
+      <Route
+        path={ROUTES.menu}
+        element={<RestaurantMenuPage />}
       />
       <Route
         path={ROUTES.about}

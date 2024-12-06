@@ -4,6 +4,7 @@ import AuthProvider from "./providers/AuthProvider";
 import ThemeProvider from "./providers/ThemeProvider";
 import Layout from "./components/layout/Layout";
 import RestaurantProvider from "./providers/RestaurantProvider";
+import OrderProvider from "./providers/OrderProvider";
 
 const App = () => {
   return (
@@ -11,9 +12,11 @@ const App = () => {
       <BrowserRouter>
         <AuthProvider>
           <RestaurantProvider>
-            <Layout>
-              <Router />
-            </Layout>
+            <OrderProvider>
+              <Layout>
+                <Router />
+              </Layout>
+            </OrderProvider>
           </RestaurantProvider>
         </AuthProvider>
       </BrowserRouter>

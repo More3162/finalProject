@@ -14,10 +14,14 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useOrder } from "../../providers/OrderProvider";
 
 const RestaurantMenuPage = () => {
-  const { id } = useParams();
   const { user } = useAuth();
+  const id = useParams()?.id || user?._id;
+  const { order, setOrder } = useOrder(id);
   const { restaurant, loadRestaurant } = useRestaurant();
   const isOwner = user?.type === "restaurant" && user._id === restaurant?._id;
 
@@ -26,14 +30,44 @@ const RestaurantMenuPage = () => {
   }, [id]);
 
   const handleAddToOrder = (item) => {
-    // Logic to add the item to the order
-    console.log("Add to order: ", item);
+    const newItem = order[item._id] || {
+      id: item._id,
+      name: item.name,
+      price: item.price,
+      quantity: 0
+    };
+
+    newItem.quantity++;
+
+    const newOrder = { ...order, [item._id]: newItem };
+    setOrder(newOrder);
   };
 
   const handleRemoveFromOrder = (item) => {
-    // Logic to remove the item from the order
-    console.log("Remove from order: ", item);
+    const oldItem = order[item._id];
+
+    if (!oldItem) return;
+
+    oldItem.quantity--;
+
+    if (!oldItem.quantity) {
+      delete order[item._id];
+    }
+
+    setOrder(order);
   };
+
+  const handleEditItem = (item) => {
+    console.log("עריכה של:", item);
+    // הוסף כאן את הלוגיקה לעריכה
+  };
+
+  const handleDeleteItem = (item) => {
+    console.log("מחיקה של:", item);
+    // הוסף כאן את הלוגיקה למחיקה
+  };
+
+
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -75,27 +109,53 @@ const RestaurantMenuPage = () => {
                   {item.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {item.price} $
+                  ${item.price}
                 </Typography>
               </Box>
-              <Box display="flex" alignItems="center">
-                <IconButton
-                  color="primary"
-                  onClick={() => handleRemoveFromOrder(item)}
-                >
-                  <RemoveIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  onClick={() => handleAddToOrder(item)}
-                >
-                  <AddIcon />
-                </IconButton>
-              </Box>
+              {user?.type === 'customer' && (
+                <Box display="flex" alignItems="center">
+                  <IconButton
+                    color="primary"
+                    onClick={() => handleRemoveFromOrder(item)}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    onClick={() => handleAddToOrder(item)}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              )}
+              {isOwner && (
+                <Box display="flex" alignItems="center">
+                  <IconButton
+                    color="primary"
+                    onClick={() => handleEditItem(item)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDeleteItem(item)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
+              )}
             </Paper>
           </ListItem>
         ))}
       </List>
+
+      <ul>
+        {Object.values(order).map((item) => (
+          <li key={item.id}>
+            {item.name} x {item.quantity} = ${item.price * item.quantity}
+          </li>
+        ))}
+      </ul>
     </Box>
   );
 };

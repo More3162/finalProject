@@ -5,12 +5,14 @@ import { menuItemSchema } from "../../validation/menu.validation";
 import { saveMenuItem } from "../../services/menu.service";
 import { normalizeMenuItem } from "../../models/restaurant.model";
 import { Box, Grid, TextField, Button, Typography, Paper, MenuItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantMenuItemForm = () => {
   const [itemData, setItemData] = useState({ name: '', category: 'Main', price: '', description: '' });
   const [error, setError] = useState(true);
   const { restaurantId, id } = useParams();
   const { restaurant, loadRestaurant } = useRestaurant();
+  const navigate = useNavigate();
 
   const handleInput = (name) => {
     return (e) => {
@@ -25,7 +27,7 @@ const RestaurantMenuItemForm = () => {
 
   const handleSubmit = async () => {
     const menuItem = await saveMenuItem({ ...itemData, _id: id });
-    // maybe navigate?
+    navigate('/menu')
   };
 
   useEffect(() => {

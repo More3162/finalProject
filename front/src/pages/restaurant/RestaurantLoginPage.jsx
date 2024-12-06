@@ -5,11 +5,14 @@ import { useAuth } from "../../providers/AuthProvider";
 import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import { link } from "joi";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantLoginPage = () => {
     const [loginData, setLoginData] = useState({ email: "", password: "" });
     const [error, setError] = useState(true);
     const { setToken } = useAuth();
+    const navigate = useNavigate();
+
 
     const handleInput = (name) => {
         return (e) => {
@@ -27,6 +30,7 @@ const RestaurantLoginPage = () => {
         try {
             const token = await loginRestaurant(loginData);
             setToken("restaurant " + token);
+            navigate('/');
         } catch (err) {
             console.error("Login failed:", err);
             setError("Failed to log in. Please check your credentials.");

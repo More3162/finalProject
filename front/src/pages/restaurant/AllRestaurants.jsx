@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Box, Grid, Card, CardContent, Typography, CircularProgress } from "@mui/material";
+import { Box, Grid, Card, CardContent, Typography, CircularProgress, CardActionArea } from "@mui/material";
 import axios from "axios";
+import { getAllRestaurants } from "../../services/restaurant.service";
+import { Link } from "react-router-dom";
 
 const AllRestaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -9,8 +11,8 @@ const AllRestaurants = () => {
     // פונקציה למשיכת המסעדות מהשרת
     const fetchRestaurants = async () => {
         try {
-            const response = await axios.get("/restaurant");
-            setRestaurants(response.data);
+            const restaurants = await getAllRestaurants();
+            setRestaurants(restaurants);
         } catch (error) {
             console.error("Error fetching restaurants:", error);
         } finally {
@@ -54,14 +56,19 @@ const AllRestaurants = () => {
                                     },
                                 }}
                             >
-                                <CardContent>
-                                    <Typography variant="h6" component="div" sx={{ mb: 1 }}>
-                                        {restaurant.name}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {restaurant.address}
-                                    </Typography>
-                                </CardContent>
+                                <CardActionArea
+                                    component={Link}
+                                    to={`/restaurant/${restaurant._id}/menu`}
+                                >
+                                    <CardContent>
+                                        <Typography variant="h6" component="div" sx={{ mb: 1 }}>
+                                            {restaurant.name}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`${restaurant.address.street} ${restaurant.address.houseNumber}, ${restaurant.address.city}, ${restaurant.address.country}`}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
                         </Grid>
                     ))}

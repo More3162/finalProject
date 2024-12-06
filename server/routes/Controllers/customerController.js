@@ -30,8 +30,9 @@ router.post('/register', validate(registerValidation), async (req, res) => {
 
 router.post('/login', validate(loginValidation), async (req, res) => {
     try {
-        const customerLogin = await customerController.login(req.body.email, req.body.password);
-        res.status(200).json(customerLogin)
+        const token = await customerController.login(req.body.email, req.body.password);
+        console.log(token);
+        res.status(200).json(token)
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

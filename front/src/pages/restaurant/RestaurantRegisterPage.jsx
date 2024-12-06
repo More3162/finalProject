@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { getEmptyRestaurant, normalizeRestaurant } from "../../models/restaurant.model";
 import { restaurantRegisterSchema } from "../../validation/restaurant.validation";
-import { registerRestaurant } from "../../services/restaurant.service";
+import { loginRestaurant, registerRestaurant } from "../../services/restaurant.service";
 import { Box, Grid, TextField, Button, Typography, Paper } from "@mui/material";
+import { useAuth } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantRegisterPage = () => {
     const [registerData, setRegisterData] = useState(getEmptyRestaurant());
     const [error, setError] = useState(true);
+    const { setToken } = useAuth();
+    const navigate = useNavigate();
 
     const handleInput = (name) => {
         return (e) => {
@@ -22,8 +26,10 @@ const RestaurantRegisterPage = () => {
 
     const handleRegister = async () => {
         const restaurant = normalizeRestaurant(registerData);
-        const token = await registerRestaurant(restaurant);
-        console.log(token);
+        await registerRestaurant(restaurant);
+        const token = await loginRestaurant(registerData);
+        setToken('restaurant ' + token);
+        navigate('/');
     };
 
     return (

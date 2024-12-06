@@ -27,20 +27,16 @@ const resRegister = async (newRestaurantData) => {
 
 // כניסת מסעדה קיימת
 const resLogin = async (email, password) => {
-    try {
-        const restaurant = await Restaurant.findOne({ email: email });
-        if (!restaurant) {
-            throw new Error('Invalid Email'); // Throw error instead of using res
-        }
-        const isMatch = await bcrypt.compare(password, restaurant.password);
-        if (!isMatch) {
-            throw new Error('Invalid Password'); // Throw error instead of using res
-        }
-        const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET);
-        return token; // Return the generated token
-    } catch (error) {
-        throw new Error(error.message); // Throw error for route handler to catch
+    const restaurant = await Restaurant.findOne({ email: email });
+    if (!restaurant) {
+        throw new Error('Invalid Email'); // Throw error instead of using res
     }
+    const isMatch = await bcrypt.compare(password, restaurant.password);
+    if (!isMatch) {
+        throw new Error('Invalid Password'); // Throw error instead of using res
+    }
+    const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET);
+    return token; // Return the generated token
 };
 
 const getRes = async (id) => {

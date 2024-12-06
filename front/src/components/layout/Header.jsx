@@ -42,7 +42,7 @@ const Header = () => {
                 <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
                     <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
                         <img
-                            src="/public/images/eatNowLogoHD.png"
+                            src="/images/eatNowLogoHD.png"
                             alt="Logo"
                             style={{ height: 100, marginRight: 8 }}
                         />

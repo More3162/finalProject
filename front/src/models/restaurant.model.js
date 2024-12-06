@@ -1,20 +1,20 @@
 export const getEmptyRestaurant = () => {
     return {
-        name: '',
-        country: '',
-        city: '',
-        street: '',
-        houseNumber: '',
-        phone: '',
+        name: 'asd',
+        country: 'asd',
+        city: 'asd',
+        street: 'asd',
+        houseNumber: '1',
+        phone: '012345678',
         email: '',
-        password: '',
-        monday: '',
-        tuesday: '',
-        wednesday: '',
-        thursday: '',
-        friday: '',
-        saturday: '',
-        sunday: ''
+        password: 'Abcd1234!',
+        monday: '12',
+        tuesday: '12',
+        wednesday: '12',
+        thursday: '12',
+        friday: '12',
+        saturday: '12',
+        sunday: '12'
     };
 };
 
