@@ -2,6 +2,7 @@ const express = require('express');
 const menuController = require('../../accessDataService/menuAccessDataService');
 const router = express.Router();
 const authMiddleware = require('../../middlewares/authMiddleware')
+const upload = require('../../middlewares/')
 
 //post new item
 router.post('/newItem', authMiddleware, async (req, res) => {
