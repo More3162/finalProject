@@ -17,6 +17,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useOrder } from "../../providers/OrderProvider";
+import ShoppingCart from "../../components/cart/ShoppingCart";
 
 const RestaurantMenuPage = () => {
   const { user } = useAuth();
@@ -24,6 +25,7 @@ const RestaurantMenuPage = () => {
   const { order, setOrder } = useOrder(id);
   const { restaurant, loadRestaurant } = useRestaurant();
   const isOwner = user?.type === "restaurant" && user._id === restaurant?._id;
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     loadRestaurant(id);
@@ -41,6 +43,7 @@ const RestaurantMenuPage = () => {
 
     const newOrder = { ...order, [item._id]: newItem };
     setOrder(newOrder);
+    setIsCartOpen(true); // פתיחת העגלה אוטומטית
   };
 
   const handleRemoveFromOrder = (item) => {
@@ -148,6 +151,17 @@ const RestaurantMenuPage = () => {
           </ListItem>
         ))}
       </List>
+
+
+      {/* עגלת קניות צפה */}
+      <ShoppingCart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        onOpen={() => setIsCartOpen(true)}
+        order={order}
+        onAdd={handleAddToOrder}
+        onRemove={handleRemoveFromOrder}
+      />
 
       <ul>
         {Object.values(order).map((item) => (
