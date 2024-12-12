@@ -20,7 +20,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
 
 router.post('/register', validate(registerValidation), async (req, res) => {
     try {
-        const newCustomer = await customerController.register(req.body, req, res);
+        const newCustomer = await customerController.register(req.body);
         console.log("New Customer add")
         res.status(200).json(newCustomer)
     } catch (error) {

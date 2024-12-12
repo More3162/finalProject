@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
-const MenuItem = require('../models/Menu');
-const Customer = require('../models/Users');
-const Restaurant = require('../models/Restaurant');
-const generateRandomId = require('../helpers/generateRandomId');
 const Address = require('../helpers/mongodb/Address');
-const { string, required, defaults } = require('joi');
+const { DEFAULT_VALIDATION, EMAIL, PHONE } = require('../helpers/mongodb/mongooseValidators');
 
 
 // הגדרת סכמה להזמנה
@@ -19,9 +15,16 @@ const orderSchema = new mongoose.Schema({
         ref: "Restaurant",
         required: true
     },
+    contact: {
+        first_name: DEFAULT_VALIDATION,
+        last_name: DEFAULT_VALIDATION,
+        email: { ...EMAIL, unique: false },
+        address: Address,
+        phone_number: PHONE,
+    },
     items: [
         {
-            menuItem_id: {
+            id: {
                 type: mongoose.Schema.Types.ObjectId, // מזהה הפריט בתפריט
                 ref: "MenuItem",
                 required: true
@@ -53,8 +56,7 @@ const orderSchema = new mongoose.Schema({
     orderDate: {
         type: Date,
         default: Date.now
-    },
-    deliveryAddress: Address, //למשוך את הכתובת מהלקוח
+    }
 });
 
 const Order = mongoose.model('Order', orderSchema);

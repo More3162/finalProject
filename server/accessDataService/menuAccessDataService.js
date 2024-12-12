@@ -1,8 +1,8 @@
 const MenuItem = require('../models/Menu');
 
 // יצירת פריט חדש
-const createMenuItem = async (req, res) => {
-    const menuItem = new MenuItem({ ...req.body, restaurant_id: req.user?.id });
+const createMenuItem = async (newMenuItem) => {
+    const menuItem = new MenuItem(newMenuItem);
     console.log(menuItem);
     return await menuItem.save();
 };

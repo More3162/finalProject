@@ -7,41 +7,37 @@ const Restaurant = require('../models/Restaurant')
 
 // הוספת הזמנה חדשה
 const createOrder = async (orderDetails) => {
-    try {
-        const { customer_id, restaurant_id, items } = orderDetails;
-        // משיכת פרטי הלקוח (כולל כתובת)
-        const customer = await Customer.findById(customer_id);
+    const { customer_id, restaurant_id, items, contact } = orderDetails;
+    // משיכת פרטי הלקוח (כולל כתובת)
+    const customer = await Customer.findById(customer_id);
 
-        if (!customer) {
-            throw new Error("no customer!")
-        }
-        let totalPrice = 0;
-
-        //הכנסת כל הפריטים להזמנה
-        const tasks = items.map((item) => {
-            return MenuItem.findById(item.menuItem_id).then(({ name, price }) => {
-                item.name = name;
-                item.price = price;
-                totalPrice += item.price * item.quantity;
-            })
-        })
-        await Promise.all(tasks)
-
-
-        // יצירת ההזמנה עם הכתובת של הלקוח
-        const order = new Order({
-            customer_id,
-            restaurant_id,
-            items,
-            totalPrice,
-            deliveryAddress: customer.address // שימוש בכתובת של הלקוח מהמודל
-        });
-
-        await order.save();
-        return order;
-    } catch (error) {
-        return error.message;
+    if (!customer) {
+        throw new Error("no customer!")
     }
+    let totalPrice = 0;
+
+    //הכנסת כל הפריטים להזמנה
+    const tasks = items.map((item) => {
+        return MenuItem.findById(item.id).then(({ name, price }) => {
+            item.name = name;
+            item.price = price;
+            totalPrice += item.price * item.quantity;
+        })
+    })
+    await Promise.all(tasks)
+
+
+    // יצירת ההזמנה עם הכתובת של הלקוח
+    const order = new Order({
+        customer_id,
+        restaurant_id,
+        items,
+        totalPrice,
+        contact
+    });
+
+    await order.save();
+    return order;
 };
 
 

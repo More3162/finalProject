@@ -21,10 +21,6 @@ const restaurantSchema = new mongoose.Schema({
         friday: String,
         saturday: String,
         sunday: String,
-    },
-    isAdmin: {
-        type: Boolean,
-        default: true,
     }
 });
 

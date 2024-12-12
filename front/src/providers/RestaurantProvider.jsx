@@ -17,7 +17,11 @@ const RestaurantProvider = ({ children }) => {
     }
   };
 
-  const ctx = { restaurant, loadRestaurant };
+  const setMenu = (menu) => {
+    setRestaurant({ ...restaurant, menu });
+  };
+
+  const ctx = { restaurant, loadRestaurant, setMenu };
 
   return (
     <RestaurantContext.Provider value={ctx}>

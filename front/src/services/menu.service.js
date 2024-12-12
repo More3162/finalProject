@@ -30,4 +30,11 @@ const saveMenuItem = async (itemData) => {
   }
 };
 
-export { saveMenuItem, getMenuItems };
+const deleteMenuItem = async (itemId) => {
+  const token = getToken()?.split(' ')[1];
+  const headers = { 'x-auth-token': token };
+  const { data } = await axios.delete(baseUrl + '/' + itemId, { headers });
+  return data;
+};
+
+export { saveMenuItem, getMenuItems, deleteMenuItem };

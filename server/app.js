@@ -6,6 +6,7 @@ const chalk = require('chalk');
 const config = require('config');
 const router = require('./routes/routes');
 const corsMiddleware = require('./middlewares/cors'); // Ensure correct import
+const seedDatabase = require('./seed/seedDatabase');
 require("dotenv").config();
 
 const app = express();
@@ -25,7 +26,8 @@ app.use((req, res, next) => {
 
 app.use(router);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await connectToDb();
+    await seedDatabase();
     console.log(chalk.blue("app is listening to port " + PORT));
-    connectToDb();
 });

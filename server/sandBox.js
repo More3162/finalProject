@@ -8,6 +8,7 @@ const Restaurant = {
     },
     "phone": "050-0000000",
     "email": "test@test.com",
+     { email: 'rasd@asd.asd', password: 'Asd123!' }
 "password": "Abc1234!",
     "opening_hours": {
     "monday": "24/7",
@@ -96,25 +97,11 @@ const orders = [
         "restaurant_id": "66f54ca8da781b389739ffa5",
         "items": [
             {
-                "menuItem_id": "67022fa0064a8d7ee2c2655f",
+                "id": "67022fa0064a8d7ee2c2655f",
                 "quantity": 1
             },
             {
-                "menuItem_id": "6702419bc545aff4320316bd",
-                "quantity": 1
-            }
-        ]
-    },
-    {
-        "customer_id": "67024bdf91bc84c15b9edde9",
-        "restaurant_id": "66f54ca8da781b389739ffa5",
-        "items": [
-            {
-                "menuItem_id": "67022fa0064a8d7ee2c2655f",
-                "quantity": 2
-            },
-            {
-                "menuItem_id": "670241e3c545aff4320316c2",
+                "id": "6702419bc545aff4320316bd",
                 "quantity": 1
             }
         ]
@@ -124,15 +111,29 @@ const orders = [
         "restaurant_id": "66f54ca8da781b389739ffa5",
         "items": [
             {
-                "menuItem_id": "6702419bc545aff4320316bd",
+                "id": "67022fa0064a8d7ee2c2655f",
                 "quantity": 2
             },
             {
-                "menuItem_id": "670241e3c545aff4320316c2",
+                "id": "670241e3c545aff4320316c2",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "customer_id": "67024bdf91bc84c15b9edde9",
+        "restaurant_id": "66f54ca8da781b389739ffa5",
+        "items": [
+            {
+                "id": "6702419bc545aff4320316bd",
+                "quantity": 2
+            },
+            {
+                "id": "670241e3c545aff4320316c2",
                 "quantity": 5
             },
             {
-                "menuItem_id": "67022fa0064a8d7ee2c2655f",
+                "id": "67022fa0064a8d7ee2c2655f",
                 "quantity": 2
             }
         ]
@@ -142,19 +143,19 @@ const orders = [
         "restaurant_id": "66f54ca8da781b389739ffa5",
         "items": [
             {
-                "menuItem_id": "67022fa0064a8d7ee2c2655f",
+                "id": "67022fa0064a8d7ee2c2655f",
                 "quantity": 2
             },
             {
-                "menuItem_id": "6702419bc545aff4320316bd",
+                "id": "6702419bc545aff4320316bd",
                 "quantity": 4
             },
             {
-                "menuItem_id": "670241c5c545aff4320316bf",
+                "id": "670241c5c545aff4320316bf",
                 "quantity": 3
             },
             {
-                "menuItem_id": "670241e3c545aff4320316c2",
+                "id": "670241e3c545aff4320316c2",
                 "quantity": 7
             }
         ]

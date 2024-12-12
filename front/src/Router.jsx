@@ -10,6 +10,9 @@ import Contact from "./pages/general/Contact";
 import RestaurantMenuPage from "./pages/restaurant/RestaurantMenuPage";
 import RestaurantMenuItemForm from "./pages/restaurant/RestaurantMenuItemForm";
 import AllRestaurants from "./pages/restaurant/AllRestaurants";
+import CheckoutPage from "./pages/checkout/CheckoutPage";
+import PaymentPage from "./pages/checkout/PaymentPage";
+import CheckoutSuccessPage from "./pages/checkout/CheckoutSuccessPage";
 
 export const ROUTES = {
   root: "/",
@@ -21,6 +24,9 @@ export const ROUTES = {
   restaurantMenuItemForm: "/restaurant/:restaurantId/menu-item/:id?",
   restaurants: "/restaurants",
   menu: "/menu",
+  checkout: "/checkout",
+  payment: "/checkout/pay",
+  paySuccess: "/checkout/success",
   about: "/about",
   privacy: "/privacy",
   contact: "/contact",
@@ -60,6 +66,18 @@ export default function Router() {
       <Route
         path={ROUTES.restaurants}
         element={<AllRestaurants />}
+      />
+      <Route
+        path={ROUTES.checkout}
+        element={<CheckoutPage />}
+      />
+      <Route
+        path={ROUTES.payment}
+        element={<PaymentPage />}
+      />
+      <Route
+        path={ROUTES.paySuccess}
+        element={<CheckoutSuccessPage />}
       />
       <Route
         path={ROUTES.menu}

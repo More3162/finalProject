@@ -1,35 +1,41 @@
-import React from "react";
-import {
-    Drawer,
-    Box,
-    Typography,
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-    Button,
-    Badge,
-} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Drawer, Box, Typography, IconButton, List, ListItem, ListItemText, Button, Badge } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { ROUTES } from "../../Router";
+import { Link, useLocation } from "react-router-dom";
 
-const ShoppingCart = ({ isOpen, onClose, onOpen, order, onAdd, onRemove }) => {
-    const itemCount = Object.values(order).reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
 
-    const subtotal = Object.values(order).reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-    );
+const ShoppingCart = ({ isOpen, setIsOpen, order, onAdd, onRemove }) => {
+    const location = useLocation();
+    const [isLoading, setIsLoading] = useState(true);
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
+
+    let itemCount = 0;
+    let subtotal = 0;
+
+    Object.values(order).forEach((item) => {
+        itemCount += item.quantity;
+        subtotal += item.price * item.quantity;
+    });
+
+    useEffect(() => {
+        setIsOpen(itemCount > 0);
+    }, [itemCount]);
+
+    useEffect(() => {
+        handleClose();
+    }, [location]);
 
     return (
         <>
             {/* כפתור צף לפתיחת העגלה */}
             {itemCount > 0 && (
                 <IconButton
-                    onClick={onOpen}
+                    onClick={handleOpen}
                     sx={{
                         width: 75,
                         height: 75,
@@ -54,11 +60,11 @@ const ShoppingCart = ({ isOpen, onClose, onOpen, order, onAdd, onRemove }) => {
             )}
 
             {/* עגלה */}
-            <Drawer anchor="right" open={isOpen} onClose={onClose}>
+            <Drawer anchor="right" open={isOpen} onClose={handleClose}>
                 <Box sx={{ width: 300, padding: 2 }}>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                         <Typography variant="h6">Shopping Cart</Typography>
-                        <IconButton onClick={onClose}>
+                        <IconButton onClick={handleClose}>
                             <CloseIcon />
                         </IconButton>
                     </Box>
@@ -72,9 +78,13 @@ const ShoppingCart = ({ isOpen, onClose, onOpen, order, onAdd, onRemove }) => {
                                     primary={item.name}
                                     secondary={`$${item.price} x ${item.quantity}`}
                                 />
-                                <Box>
-                                    <IconButton onClick={() => onRemove(item)}>-</IconButton>
-                                    <IconButton onClick={() => onAdd(item)}>+</IconButton>
+                                <Box display="flex">
+                                    <IconButton onClick={() => onRemove(item)}>
+                                        <RemoveIcon />
+                                    </IconButton>
+                                    <IconButton onClick={() => onAdd(item)}>
+                                        <AddIcon />
+                                    </IconButton>
                                 </Box>
                             </ListItem>
                         ))}
@@ -85,6 +95,8 @@ const ShoppingCart = ({ isOpen, onClose, onOpen, order, onAdd, onRemove }) => {
                         color="primary"
                         fullWidth
                         sx={{ marginTop: 2 }}
+                        LinkComponent={Link}
+                        to={ROUTES.checkout}
                     >
                         Checkout
                     </Button>

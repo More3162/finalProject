@@ -9,17 +9,19 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(null);
+  const [isUserLoading, setIsUserLoading] = useState(true);
 
-  const ctx = { user, setToken };
+  const ctx = { user, setToken, isUserLoading };
 
   useEffect(() => {
     storeToken(token);
-    const [userType, userToken] = token?.split(' ') || [];
 
+    const [userType, userToken] = token?.split(' ') || [];
     const { id } = userToken ? jwtDecode(userToken) : {};
 
-
     const getUser = async () => {
+      setIsUserLoading(true);
+
       if (userType === 'customer') {
         const user = await getCustomer(id);
         setUser({ ...user, type: 'customer' });
@@ -29,7 +31,11 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
       }
+
+      setIsUserLoading(false);
     }
+
+
     getUser();
   }, [token]);
 

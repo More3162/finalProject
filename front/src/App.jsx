@@ -5,6 +5,7 @@ import ThemeProvider from "./providers/ThemeProvider";
 import Layout from "./components/layout/Layout";
 import RestaurantProvider from "./providers/RestaurantProvider";
 import OrderProvider from "./providers/OrderProvider";
+import CartProvider from "./providers/CartProvider";
 
 const App = () => {
   return (
@@ -13,9 +14,11 @@ const App = () => {
         <AuthProvider>
           <RestaurantProvider>
             <OrderProvider>
-              <Layout>
-                <Router />
-              </Layout>
+              <CartProvider>
+                <Layout>
+                  <Router />
+                </Layout>
+              </CartProvider>
             </OrderProvider>
           </RestaurantProvider>
         </AuthProvider>

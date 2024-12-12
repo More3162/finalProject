@@ -18,13 +18,13 @@ const loginRestaurant = async ({ email, password }) => {
   try {
     const { data } = await axios.post(baseUrl + '/login', { email, password });
     console.log(data);
-    // axios.defaults.headers['x-auth-token'] = token;  // שים את ה-token בהגדרות ברירת המחדל לכל הבקשות הבאות
     return data;
   } catch (err) {
     console.error('Login failed:', err);
     throw err;  // ודא שהשגיאה מתקבלת
   }
 };
+
 
 
 const registerRestaurant = async (restaurantData) => {

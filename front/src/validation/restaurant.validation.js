@@ -36,8 +36,7 @@ const restaurantRegisterSchema = Joi.object({
         friday: Joi.string().min(2).max(256).required(),
         saturday: Joi.string().min(2).max(256).required(),
         sunday: Joi.string().min(2).max(256).required()
-    }),
-    isAdmin: Joi.boolean().default(true)
+    })
 });
 
 export { restaurantLoginSchema, restaurantRegisterSchema };

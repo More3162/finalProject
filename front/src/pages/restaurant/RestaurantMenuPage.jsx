@@ -1,76 +1,33 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useRestaurant } from "../../providers/RestaurantProvider";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { ROUTES } from "../../Router";
-import {
-  Box,
-  Typography,
-  Button,
-  List,
-  ListItem,
-  Paper,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Button, List, ListItem, Paper, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useOrder } from "../../providers/OrderProvider";
-import ShoppingCart from "../../components/cart/ShoppingCart";
+import { deleteMenuItem } from "../../services/menu.service";
 
 const RestaurantMenuPage = () => {
   const { user } = useAuth();
   const id = useParams()?.id || user?._id;
-  const { order, setOrder } = useOrder(id);
-  const { restaurant, loadRestaurant } = useRestaurant();
+  const { order, addToOrder, removeFromOrder } = useOrder(id);
+  const { restaurant, loadRestaurant, setMenu } = useRestaurant();
   const isOwner = user?.type === "restaurant" && user._id === restaurant?._id;
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     loadRestaurant(id);
   }, [id]);
 
-  const handleAddToOrder = (item) => {
-    const newItem = order[item._id] || {
-      id: item._id,
-      name: item.name,
-      price: item.price,
-      quantity: 0
-    };
-
-    newItem.quantity++;
-
-    const newOrder = { ...order, [item._id]: newItem };
-    setOrder(newOrder);
-    setIsCartOpen(true); // פתיחת העגלה אוטומטית
-  };
-
-  const handleRemoveFromOrder = (item) => {
-    const oldItem = order[item._id];
-
-    if (!oldItem) return;
-
-    oldItem.quantity--;
-
-    if (!oldItem.quantity) {
-      delete order[item._id];
+  const handleDeleteItem = async (item) => {
+    if (confirm('Are you sure you want to delete this menu item?')) {
+      await deleteMenuItem(item._id);
+      setMenu(restaurant.menu.filter((menuItem) => menuItem._id !== item._id));
     }
-
-    setOrder(order);
   };
-
-  const handleEditItem = (item) => {
-    console.log("עריכה של:", item);
-    // הוסף כאן את הלוגיקה לעריכה
-  };
-
-  const handleDeleteItem = (item) => {
-    console.log("מחיקה של:", item);
-    // הוסף כאן את הלוגיקה למחיקה
-  };
-
-
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -119,13 +76,13 @@ const RestaurantMenuPage = () => {
                 <Box display="flex" alignItems="center">
                   <IconButton
                     color="primary"
-                    onClick={() => handleRemoveFromOrder(item)}
+                    onClick={() => removeFromOrder(item)}
                   >
                     <RemoveIcon />
                   </IconButton>
                   <IconButton
                     color="primary"
-                    onClick={() => handleAddToOrder(item)}
+                    onClick={() => addToOrder(item)}
                   >
                     <AddIcon />
                   </IconButton>
@@ -135,7 +92,8 @@ const RestaurantMenuPage = () => {
                 <Box display="flex" alignItems="center">
                   <IconButton
                     color="primary"
-                    onClick={() => handleEditItem(item)}
+                    LinkComponent={Link}
+                    to={ROUTES.restaurantMenuItemForm.replace(':restaurantId', id).replace(':id', item._id)}
                   >
                     <EditIcon />
                   </IconButton>
@@ -151,25 +109,6 @@ const RestaurantMenuPage = () => {
           </ListItem>
         ))}
       </List>
-
-
-      {/* עגלת קניות צפה */}
-      <ShoppingCart
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        onOpen={() => setIsCartOpen(true)}
-        order={order}
-        onAdd={handleAddToOrder}
-        onRemove={handleRemoveFromOrder}
-      />
-
-      <ul>
-        {Object.values(order).map((item) => (
-          <li key={item.id}>
-            {item.name} x {item.quantity} = ${item.price * item.quantity}
-          </li>
-        ))}
-      </ul>
     </Box>
   );
 };

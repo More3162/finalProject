@@ -70,7 +70,15 @@ https://github.com/More3162/finalProject.git
 
 (Please note that the default MongoBD used in this project is Compass and ENVIRONMENT=development is the default choice. For ATLAS usage please change ENVIROMENT=production and provide your MongoDB URI) 
 
-JWT_SECRET= YOUR SECRET WORD!
+MONGO_URL = ""
+
+PORT = 3000
+
+MONGODB_URI = your_mongodb_connection_string
+
+JWT_SECRET = Your secret Word
+
+ENVIRONMENT=development
 
 
 4. Run the server

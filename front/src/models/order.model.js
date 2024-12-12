@@ -4,11 +4,11 @@ export const normalizeOrder = () => {
         "restaurant_id": "",
         "items": [
             {
-                "menuItem_id": "",
+                "id": "",
                 "quantity": ""
             },
             {
-                "menuItem_id": "",
+                "id": "",
                 "quantity": ""
             }
         ]

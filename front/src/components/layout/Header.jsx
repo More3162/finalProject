@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, IconButton, Button, Drawer, List, ListItem, ListItemText, Box, useMediaQuery, Switch } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../providers/ThemeProvider";
 import { useAuth } from "../../providers/AuthProvider";
 
@@ -10,6 +10,7 @@ const Header = () => {
     const isMobile = useMediaQuery("(max-width:600px)");
     const { isDarkMode, toggleDarkMode } = useTheme();
     const { user, setToken } = useAuth();
+    const navigate = useNavigate();
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -20,15 +21,13 @@ const Header = () => {
 
     // קישורים דינמיים בהתאם לסוג המשתמש
     const menuItems = user?.type === "restaurant" ? [
-        { text: "Dashboard", link: "/dashboard" },
-        { text: "Orders", link: "/orders" },
         { text: "Menu", link: "/menu" },
-        { text: "Profile", link: "/profile" },
+        { text: "Orders", link: "/orders" },
+        { text: "Dashboard", link: "/dashboard" },
     ] : user?.type === "customer" ? [
         { text: "Home", link: "/" },
         { text: "Restaurants", link: "/restaurants" },
         { text: "Orders", link: "/orders" },
-        { text: "Profile", link: "/profile" },
     ] : [
         { text: "Home", link: "/" },
         { text: "Login", link: "/customer/login" },
@@ -96,7 +95,10 @@ const Header = () => {
                         ))
                     }
                     {user &&
-                        <Button color="inherit" onClick={() => setToken(null)}>
+                        <Button color="inherit" onClick={() => {
+                            setToken(null);
+                            navigate('/');
+                        }}>
                             Logout
                         </Button>
                     }

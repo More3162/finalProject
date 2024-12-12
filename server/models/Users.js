@@ -15,7 +15,11 @@ const customerSchema = new mongoose.Schema({
     order_history: [{
         order_id: String,
         order_date: { type: Date, default: Date.now },
-    }]
+    }],
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

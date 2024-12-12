@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const Customer = require('../models/Users');
 const _ = require('lodash');
 
-exports.register = async (newCustomer, req, res) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const customer = new Customer({ ...req.body, password: hashedPassword });
+exports.register = async (newCustomer) => {
+    const hashedPassword = await bcrypt.hash(newCustomer.password, 10);
+    const customer = new Customer({ ...newCustomer, password: hashedPassword });
     await customer.save();
     return _.pick(newCustomer, ['_id', 'name', 'email']);
 };
@@ -25,5 +25,5 @@ exports.login = async (email, password) => {
 exports.getCustomer = async (id) => {
     const customer = await Customer.findById(id);
     if (!customer) throw new Error("user NOT found")
-    return _.pick(customer, ['_id', 'name', 'email']);
+    return _.omit(customer, ['password']);
 };

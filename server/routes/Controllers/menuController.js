@@ -7,7 +7,7 @@ const upload = require('../../middlewares/upload')
 //post new item
 router.post('/newItem', authMiddleware, async (req, res) => {
     try {
-        const newItem = await menuController.createMenuItem(req, res);
+        const newItem = await menuController.createMenuItem({ ...req.body, restaurant_id: req.user?.id });
         res.status(201).json(newItem);
     } catch (error) {
         res.status(400).json({ message: error.message });
