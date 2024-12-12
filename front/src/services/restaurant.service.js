@@ -26,15 +26,6 @@ const loginRestaurant = async ({ email, password }) => {
   }
 };
 
-// const handleGetRestaurant = async (id) => {
-//   try {
-//     console.log("Sending GET request for restaurant ID:", id);
-//     const response = await axios.get(baseUrl + `/restaurant/${id}`);
-//     console.log("Restaurant data:", response.data);
-//   } catch (err) {
-//     console.error("Failed to get restaurant:", err);
-//   }
-// };
 
 const registerRestaurant = async (restaurantData) => {
   try {

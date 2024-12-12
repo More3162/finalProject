@@ -8,7 +8,6 @@ const Restaurant = {
     },
     "phone": "050-0000000",
     "email": "test@test.com",
-     { email: 'rasd@asd.asd', password: 'Asd123!' }
 "password": "Abc1234!",
     "opening_hours": {
     "monday": "24/7",
