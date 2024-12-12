@@ -34,7 +34,7 @@ https://github.com/More3162/finalProject.git
 
 3. Create a .env file in the root of the project and add your environment variables:
 
-VITE_BASE_URL=http://localhost:3000
+VITE_BASE_URL= YOUR LOCAL HOST URL EXP- http://localhost:3000
 
 4. Run the server
    npm run dev
