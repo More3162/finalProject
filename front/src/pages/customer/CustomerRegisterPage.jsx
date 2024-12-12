@@ -50,7 +50,7 @@ const CustomerRegisterPage = () => {
         Customer Registration
       </Typography>
 
-      {/* טופס רישום בעיצוב חדש */}
+      {/* טופס רישום */}
       <Paper
         elevation={3}
         sx={{

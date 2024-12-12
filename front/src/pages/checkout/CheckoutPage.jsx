@@ -172,7 +172,7 @@ const CheckoutPage = () => {
             )}
 
 
-            {/* Register Button */}
+            {/*  Button */}
             <Grid item xs={12}>
               <Button
                 fullWidth

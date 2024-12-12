@@ -55,7 +55,7 @@ const RestaurantLoginPage = () => {
                 Restaurant Login
             </Typography>
 
-            {/* טופס בעיצוב חדש */}
+            {/* טופס בעיצוב  */}
             <Paper
                 elevation={3}
                 sx={{

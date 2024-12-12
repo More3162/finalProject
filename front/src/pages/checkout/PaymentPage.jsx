@@ -26,7 +26,6 @@ const PaymentPage = () => {
       setStoredOrder(order);
       navigate('/checkout/success');
     } catch (e) {
-      // alert('Transaction Failed!');
       throw e;
     }
   };

@@ -49,7 +49,7 @@ const RestaurantRegisterPage = () => {
                 Restaurant Registration
             </Typography>
 
-            {/* טופס בעיצוב חדש */}
+            {/* טופס בעיצוב  */}
             <Paper
                 elevation={3}
                 sx={{
