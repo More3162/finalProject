@@ -49,5 +49,158 @@
         "is_available": true
       }
     ]
+  },
+    {
+    "name": "bistro central",
+    "address": {
+      "country": "Israel",
+      "city": "Haifa",
+      "street": "Haatzmaut Blvd",
+      "houseNumber": 15
+    },
+    "phone": "052-1234567",
+    "email": "info@bistrocentral.com",
+    "password": "Central123!",
+    "opening_hours": {
+      "monday": "08:00-23:00",
+      "tuesday": "08:00-23:00",
+      "wednesday": "08:00-23:00",
+      "thursday": "08:00-23:00",
+      "friday": "08:00-00:00",
+      "saturday": "09:00-00:00",
+      "sunday": "Closed"
+    },
+    "menu": [
+      {
+        "name": "Avocado Toast",
+        "category": "Main",
+        "price": 42,
+        "description": "Fresh avocado spread on toasted sourdough, topped with poached egg and cherry tomatoes.",
+        "is_available": true
+      },
+      {
+        "name": "Grilled Cheese Sandwich",
+        "category": "Main",
+        "price": 50,
+        "description": "Golden grilled bread filled with melted gouda and cheddar cheese, served with a side of tomato soup.",
+        "is_available": true
+      },
+      {
+        "name": "Ribeye Steak",
+        "category": "Main",
+        "price": 130,
+        "description": "Juicy ribeye steak cooked to perfection, served with mashed potatoes and peppercorn sauce.",
+        "is_available": true
+      },
+      {
+        "name": "Tiramisu",
+        "category": "Dessert",
+        "price": 35,
+        "description": "Classic Italian tiramisu layered with mascarpone cream and espresso-soaked ladyfingers.",
+        "is_available": true
+      }
+    ]
+  },
+  {
+    "name": "La Piazza",
+    "address": {
+      "country": "Israel",
+      "city": "Jerusalem",
+      "street": "King George St",
+      "houseNumber": 72
+    },
+    "phone": "054-9876543",
+    "email": "contact@lapiazza.com",
+    "password": "Piazza2024!",
+    "opening_hours": {
+      "monday": "11:00-23:00",
+      "tuesday": "11:00-23:00",
+      "wednesday": "11:00-23:00",
+      "thursday": "11:00-00:00",
+      "friday": "12:00-01:00",
+      "saturday": "12:00-01:00",
+      "sunday": "11:00-22:00"
+    },
+    "menu": [
+      {
+        "name": "Margherita Pizza",
+        "category": "Main",
+        "price": 60,
+        "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+        "is_available": true
+      },
+      {
+        "name": "Bruschetta",
+        "category": "Starters",
+        "price": 28,
+        "description": "Toasted bread topped with diced tomatoes, garlic, olive oil, and fresh basil.",
+        "is_available": true
+      },
+      {
+        "name": "Spaghetti Carbonara",
+        "category": "Main",
+        "price": 72,
+        "description": "Traditional pasta with crispy pancetta, egg yolk, Parmesan cheese, and black pepper.",
+        "is_available": true
+      },
+      {
+        "name": "Panna Cotta",
+        "category": "Dessert",
+        "price": 40,
+        "description": "Creamy panna cotta served with a raspberry coulis.",
+        "is_available": true
+      }
+    ]
+  },
+  {
+    "name": "Seaside Grill",
+    "address": {
+      "country": "Israel",
+      "city": "Netanya",
+      "street": "David HaMelech St",
+      "houseNumber": 10
+    },
+    "phone": "053-1122334",
+    "email": "hello@seasidegrill.com",
+    "password": "GrillMeUp1!",
+    "opening_hours": {
+      "monday": "10:00-22:00",
+      "tuesday": "10:00-22:00",
+      "wednesday": "10:00-22:00",
+      "thursday": "10:00-23:00",
+      "friday": "10:00-23:30",
+      "saturday": "10:00-23:30",
+      "sunday": "10:00-22:00"
+    },
+    "menu": [
+      {
+        "name": "Fish & Chips",
+        "category": "Main",
+        "price": 65,
+        "description": "Crispy battered fish served with golden fries and tartar sauce.",
+        "is_available": true
+      },
+      {
+        "name": "Seafood Platter",
+        "category": "Main",
+        "price": 140,
+        "description": "A variety of grilled seafood, including shrimp, calamari, and mussels, served with garlic butter.",
+        "is_available": true
+      },
+      {
+        "name": "Greek Salad",
+        "category": "Starters",
+        "price": 35,
+        "description": "A refreshing mix of cucumbers, tomatoes, olives, feta cheese, and olive oil.",
+        "is_available": true
+      },
+      {
+        "name": "Key Lime Pie",
+        "category": "Dessert",
+        "price": 38,
+        "description": "Tangy key lime pie with a buttery graham cracker crust and whipped cream topping.",
+        "is_available": true
+      }
+    ]
   }
 ]

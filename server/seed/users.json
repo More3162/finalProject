@@ -38,5 +38,70 @@
       "houseNumber": "32"
     },
     "phone_number": "050-9422223"
+  },
+  {
+    "first_name": "Dana",
+    "last_name": "Levi",
+    "email": "dana@test.com",
+    "password": "Dana123!",
+    "address": {
+      "country": "Israel",
+      "city": "Haifa",
+      "street": "HaNassi Blvd",
+      "houseNumber": "18"
+    },
+    "phone_number": "050-1234567"
+  },
+  {
+    "first_name": "Yossi",
+    "last_name": "Cohen",
+    "email": "yossi@test.com",
+    "password": "Yossi123!",
+    "address": {
+      "country": "Israel",
+      "city": "Jerusalem",
+      "street": "Jaffa St",
+      "houseNumber": "45"
+    },
+    "phone_number": "050-7654321"
+  },
+  {
+    "first_name": "Tamar",
+    "last_name": "Sharon",
+    "email": "tamar@test.com",
+    "password": "Tamar123!",
+    "address": {
+      "country": "Israel",
+      "city": "Rishon LeZion",
+      "street": "Herzl St",
+      "houseNumber": "30"
+    },
+    "phone_number": "050-1122334"
+  },
+  {
+    "first_name": "Omer",
+    "last_name": "Aviv",
+    "email": "omer@test.com",
+    "password": "Omer123!",
+    "address": {
+      "country": "Israel",
+      "city": "Petah Tikva",
+      "street": "HaHistadrut",
+      "houseNumber": "7"
+    },
+    "phone_number": "050-3344556"
+  },
+  {
+    "first_name": "Noa",
+    "last_name": "Bar",
+    "email": "noa@test.com",
+    "password": "Noa123!",
+    "address": {
+      "country": "Israel",
+      "city": "Netanya",
+      "street": "Shaked St",
+      "houseNumber": "12"
+    },
+    "phone_number": "050-7788990"
   }
 ]

@@ -69,6 +69,9 @@ const RestaurantMenuPage = () => {
                   {item.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                   ${item.price}
                 </Typography>
               </Box>
