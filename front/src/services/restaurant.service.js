@@ -30,7 +30,6 @@ const loginRestaurant = async ({ email, password }) => {
 const registerRestaurant = async (restaurantData) => {
   try {
     const { data } = await axios.post(baseUrl + '/register', restaurantData);  // הוסף את ה-baseUrl כאן
-    // console.log('Restaurant registered:', response.data);
     return data;
   } catch (error) {
     console.error('Error registering restaurant:', error.response?.data || error.message);
