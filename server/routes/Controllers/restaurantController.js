@@ -21,10 +21,9 @@ router.get("/", async (req, res) => {
 
 
 // מסעדה ספיציפית 
-router.get('/:id', /* authMiddleware,*/ async (req, res) => {
+router.get('/:id',  async (req, res) => {
     try {
         const { id } = req.params;
-        // if (req.user.id !== id) throw new Error();   
         const restaurant = await restaurantController.getRes(id);
         res.status(200).json(restaurant);
     } catch (error) {

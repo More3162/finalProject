@@ -4,11 +4,25 @@ import { useEffect, useState } from "react";
 import { menuItemSchema } from "../../validation/menu.validation";
 import { saveMenuItem } from "../../services/menu.service";
 import { normalizeMenuItem } from "../../models/restaurant.model";
-import { Box, Grid, TextField, Button, Typography, Paper, MenuItem } from "@mui/material";
+import {
+  Box,
+  Grid,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  MenuItem,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantMenuItemForm = () => {
-  const [itemData, setItemData] = useState({ name: '', category: 'Main', price: '', description: '' });
+  const [itemData, setItemData] = useState({
+    name: "",
+    category: "Main",
+    price: "",
+    description: "",
+    imageUrl: "",
+  });
   const [error, setError] = useState(true);
   const { restaurantId, id } = useParams();
   const { restaurant, loadRestaurant } = useRestaurant();
@@ -27,7 +41,7 @@ const RestaurantMenuItemForm = () => {
 
   const handleSubmit = async () => {
     const menuItem = await saveMenuItem({ ...itemData, _id: id });
-    navigate('/menu')
+    navigate("/menu");
   };
 
   useEffect(() => {
@@ -55,7 +69,10 @@ const RestaurantMenuItemForm = () => {
       }}
     >
       {/* כותרת עמוד */}
-      <Typography variant="h4" sx={{ mb: 4, fontWeight: "bold", textAlign: "center" }}>
+      <Typography
+        variant="h4"
+        sx={{ mb: 4, fontWeight: "bold", textAlign: "center" }}
+      >
         {id ? "Edit" : "Create"} Menu Item
       </Typography>
 
@@ -84,9 +101,10 @@ const RestaurantMenuItemForm = () => {
                 placeholder="Enter name"
                 variant="outlined"
                 sx={{
-                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "primary.main",
-                  },
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                    {
+                      borderColor: "primary.main",
+                    },
                 }}
               />
             </Grid>
@@ -130,6 +148,17 @@ const RestaurantMenuItemForm = () => {
                 value={itemData.description}
                 onInput={handleInput("description")}
                 placeholder="Enter a brief description"
+                variant="outlined"
+              />
+            </Grid>
+            {/*image Field */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="image URL"
+                value={itemData.imageUrl || ""}
+                onInput={handleInput("imageUrl")}
+                placeholder="Enter a image URL"
                 variant="outlined"
               />
             </Grid>

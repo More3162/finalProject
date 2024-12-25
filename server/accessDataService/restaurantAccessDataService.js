@@ -41,7 +41,8 @@ const resLogin = async (email, password) => {
 
 const getRes = async (id) => {
     console.log("Getting restaurant with id:", id);
-    const restaurant = await Restaurant.findById(id);
+    const restaurant = await Restaurant.findById(id).populate("orders");
+    console.log(restaurant)
     if (!restaurant) {
         throw new Error("Restaurant not found");
     }

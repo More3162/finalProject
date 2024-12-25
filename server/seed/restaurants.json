@@ -25,7 +25,8 @@
         "category": "Main",
         "price": 85,
         "description": "A delicious beef hamburger, served with fresh vegetables and a special house sauce.",
-        "is_available": true
+        "is_available": true,
+        "imageUrl":"https://cdn.pixabay.com/photo/2023/11/14/23/06/burger-8388870_1280.jpg"
       },
       {
         "name": "Caesar Salad",

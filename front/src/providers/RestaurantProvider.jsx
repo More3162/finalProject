@@ -11,7 +11,9 @@ const RestaurantProvider = ({ children }) => {
     if (id) {
       const res = await getRestaurant(id);
       const menu = await getMenuItems(id);
-      setRestaurant({ ...res, menu });
+      const restaurant = { ...res, menu };
+      setRestaurant(restaurant);
+      return restaurant;
     } else {
       setRestaurant(null);
     }

@@ -23,7 +23,7 @@ const Header = () => {
     const menuItems = user?.type === "restaurant" ? [
         { text: "Menu", link: "/menu" },
         { text: "Orders", link: "/orders" },
-        { text: "Dashboard", link: "/dashboard" },
+        //{ text: "Dashboard", link: "/dashboard" },
     ] : user?.type === "customer" ? [
         { text: "Home", link: "/" },
         { text: "Restaurants", link: "/restaurants" },

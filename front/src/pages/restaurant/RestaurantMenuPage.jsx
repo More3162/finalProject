@@ -3,7 +3,16 @@ import { useRestaurant } from "../../providers/RestaurantProvider";
 import { useEffect } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { ROUTES } from "../../Router";
-import { Box, Typography, Button, List, ListItem, Paper, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  Paper,
+  IconButton,
+  ImageListItem,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,7 +32,7 @@ const RestaurantMenuPage = () => {
   }, [id]);
 
   const handleDeleteItem = async (item) => {
-    if (confirm('Are you sure you want to delete this menu item?')) {
+    if (confirm("Are you sure you want to delete this menu item?")) {
       await deleteMenuItem(item._id);
       setMenu(restaurant.menu.filter((menuItem) => menuItem._id !== item._id));
     }
@@ -36,11 +45,9 @@ const RestaurantMenuPage = () => {
           <Button
             variant="contained"
             color="primary"
-            href={
-              ROUTES.restaurantMenuItemForm
-                .replace(":restaurantId", restaurant._id)
-                .replace("/:id?", "")
-            }
+            href={ROUTES.restaurantMenuItemForm
+              .replace(":restaurantId", restaurant._id)
+              .replace("/:id?", "")}
           >
             Add Menu Item
           </Button>
@@ -62,8 +69,15 @@ const RestaurantMenuPage = () => {
                 "&:hover": {
                   transform: "scale(1.02)",
                 },
+                gap: 2,
               }}
             >
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                style={{ width: "75px", height: "auto", borderRadius: "8px" }} // התאמת עיצוב
+              />
+
               <Box>
                 <Typography variant="h6" component="div">
                   {item.name}
@@ -75,7 +89,7 @@ const RestaurantMenuPage = () => {
                   ${item.price}
                 </Typography>
               </Box>
-              {user?.type === 'customer' && (
+              {user?.type === "customer" && (
                 <Box display="flex" alignItems="center">
                   <IconButton
                     color="primary"
@@ -83,10 +97,7 @@ const RestaurantMenuPage = () => {
                   >
                     <RemoveIcon />
                   </IconButton>
-                  <IconButton
-                    color="primary"
-                    onClick={() => addToOrder(item)}
-                  >
+                  <IconButton color="primary" onClick={() => addToOrder(item)}>
                     <AddIcon />
                   </IconButton>
                 </Box>
@@ -96,7 +107,9 @@ const RestaurantMenuPage = () => {
                   <IconButton
                     color="primary"
                     LinkComponent={Link}
-                    to={ROUTES.restaurantMenuItemForm.replace(':restaurantId', id).replace(':id', item._id)}
+                    to={ROUTES.restaurantMenuItemForm
+                      .replace(":restaurantId", id)
+                      .replace(":id", item._id)}
                   >
                     <EditIcon />
                   </IconButton>

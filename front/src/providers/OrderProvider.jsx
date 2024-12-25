@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { getRestaurantId, getStoredOrders, setRestaurantId, setStoredOrders } from "../services/orders.service";
+import {
+  getRestaurantId,
+  getStoredOrders,
+  setRestaurantId,
+  setStoredOrders,
+} from "../services/orders.service";
 
 const OrderContext = createContext();
 
@@ -13,11 +18,7 @@ const OrderProvider = ({ children }) => {
 
   const ctx = { orders, setOrders };
 
-  return (
-    <OrderContext.Provider value={ctx}>
-      {children}
-    </OrderContext.Provider>
-  );
+  return <OrderContext.Provider value={ctx}>{children}</OrderContext.Provider>;
 };
 
 export const useOrder = (id = getRestaurantId()) => {
@@ -35,7 +36,7 @@ export const useOrder = (id = getRestaurantId()) => {
       id: id,
       name: item.name,
       price: item.price,
-      quantity: 0
+      quantity: 0,
     };
 
     newItem.quantity++;
@@ -59,7 +60,15 @@ export const useOrder = (id = getRestaurantId()) => {
     setOrder(order);
   };
 
-  return { restaurantId: id, orders, setOrders, order, setOrder, addToOrder, removeFromOrder };
+  return {
+    restaurantId: id,
+    orders,
+    setOrders,
+    order,
+    setOrder,
+    addToOrder,
+    removeFromOrder,
+  };
 };
 
 export default OrderProvider;
