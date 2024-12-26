@@ -61,7 +61,6 @@ const RestaurantMenuPage = () => {
               elevation={3}
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
                 padding: 2,
                 width: "100%",
@@ -75,7 +74,12 @@ const RestaurantMenuPage = () => {
               <img
                 src={item.imageUrl}
                 alt={item.name}
-                style={{ width: "75px", height: "auto", borderRadius: "8px" }} // התאמת עיצוב
+                style={{
+                  width: "110px", // רוחב קבוע
+                  height: "110px", // גובה קבוע
+                  borderRadius: "8px", // פינות מעוגלות
+                  objectFit: "cover", // מבטיח שהתמונה תמלא את התיבה תוך שמירה על פרופורציות
+                }}
               />
 
               <Box>

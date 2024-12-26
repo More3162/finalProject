@@ -33,21 +33,24 @@
         "category": "Starters",
         "price": 45,
         "description": "A fresh Caesar salad with crispy croutons, Parmesan cheese, and a creamy Caesar dressing.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://plus.unsplash.com/premium_photo-1700089483464-4f76cc3d360b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Grilled Salmon",
         "category": "Main",
         "price": 110,
         "description": "Perfectly grilled salmon fillet, served with a side of roasted vegetables and lemon butter sauce.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://plus.unsplash.com/premium_photo-1723575688671-fc98e2f3fcae?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Chocolate Lava Cake",
         "category": "Dessert",
         "price": 38,
         "description": "Warm chocolate cake with a molten center, served with vanilla ice cream.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1673551490812-eaee2e9bf0ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ]
   },
@@ -77,28 +80,32 @@
         "category": "Main",
         "price": 42,
         "description": "Fresh avocado spread on toasted sourdough, topped with poached egg and cherry tomatoes.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1704545229893-4f1bb5ef16a1?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Grilled Cheese Sandwich",
         "category": "Main",
         "price": 50,
         "description": "Golden grilled bread filled with melted gouda and cheddar cheese, served with a side of tomato soup.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://plus.unsplash.com/premium_photo-1695127909043-86a3dce3f65e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Ribeye Steak",
         "category": "Main",
         "price": 130,
         "description": "Juicy ribeye steak cooked to perfection, served with mashed potatoes and peppercorn sauce.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1432139509613-5c4255815697?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Tiramisu",
         "category": "Dessert",
         "price": 35,
         "description": "Classic Italian tiramisu layered with mascarpone cream and espresso-soaked ladyfingers.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://plus.unsplash.com/premium_photo-1695028378225-97fbe39df62a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ]
   },
@@ -128,28 +135,32 @@
         "category": "Main",
         "price": 60,
         "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Bruschetta",
         "category": "Starters",
         "price": 28,
         "description": "Toasted bread topped with diced tomatoes, garlic, olive oil, and fresh basil.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1506280754576-f6fa8a873550?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Spaghetti Carbonara",
         "category": "Main",
         "price": 72,
         "description": "Traditional pasta with crispy pancetta, egg yolk, Parmesan cheese, and black pepper.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Panna Cotta",
         "category": "Dessert",
         "price": 40,
         "description": "Creamy panna cotta served with a raspberry coulis.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1613505411792-208b15f862b0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ]
   },
@@ -179,28 +190,32 @@
         "category": "Main",
         "price": 65,
         "description": "Crispy battered fish served with golden fries and tartar sauce.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://images.unsplash.com/photo-1553557202-e8e60357f061?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Seafood Platter",
         "category": "Main",
         "price": 140,
         "description": "A variety of grilled seafood, including shrimp, calamari, and mussels, served with garlic butter.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://plus.unsplash.com/premium_photo-1719611418707-cec3416a530b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Greek Salad",
         "category": "Starters",
         "price": 35,
         "description": "A refreshing mix of cucumbers, tomatoes, olives, feta cheese, and olive oil.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl": "https://plus.unsplash.com/premium_photo-1690561082636-06237f98bfab?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "name": "Key Lime Pie",
         "category": "Dessert",
         "price": 38,
         "description": "Tangy key lime pie with a buttery graham cracker crust and whipped cream topping.",
-        "is_available": true
+        "is_available": true,
+         "imageUrl":"https://cdn.pixabay.com/photo/2024/05/31/11/02/ai-generated-8800359_1280.jpg"
       }
     ]
   }
