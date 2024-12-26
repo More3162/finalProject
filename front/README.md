@@ -29,15 +29,18 @@ Installation
 
 https://github.com/More3162/finalProject.git
 
-2. Install dependencies:
+2. navigate to the front file:
+   cd front
+
+3. Install dependencies:
    npm i
 
-3. Create a .env file in the root of the project and add your environment variables:
+4. Create a .env file in the root of the project and add your environment variables:
 
-VITE_BASE_URL=YOUR LOCAL HOST LIKE - http://localhost:3000
+VITE_BASE_URL=http://localhost:3000
 
 4. Run the server
-   nodemon app
+   npm run dev
 
 ## 🔗 Links
 
@@ -45,7 +48,7 @@ VITE_BASE_URL=YOUR LOCAL HOST LIKE - http://localhost:3000
 
 ## 🛠 Skills
 
-Javascript, HTML, CSS, express, joi, jsonwebtoken, mongodb, mongoose.
+Javascript, HTML, CSS, express, joi, jsonwebtoken, mongodb,MUI,node, mongoose.
 
 ## Other Common Github Profile Sections
 
