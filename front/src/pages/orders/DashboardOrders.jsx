@@ -14,7 +14,6 @@ import {
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import { useAuth } from "../../providers/AuthProvider";
 import { useRestaurant } from "../../providers/RestaurantProvider";
-import { useOrder } from "../../providers/OrderProvider";
 import { deleteOrder, updateOrderStatus } from "../../services/orders.service";
 
 const DashboardOrderPage = () => {
@@ -118,8 +117,25 @@ const DashboardOrderPage = () => {
                   </Box>
                 )}
               </Box>
-              {selected == order._id && (
+              {selected === order._id && (
                 <List>
+                  {/* Contact Details in One Line */}
+                  <ListItem>
+                    <ListItemText
+                      primary="Contact"
+                      secondary={`${order.contact.first_name} ${order.contact.last_name}, Phone: ${order.contact.phone_number}`}
+                    />
+                  </ListItem>
+                  {/* Address Details */}
+                  <ListItem>
+                    <ListItemText
+                      primary="Address"
+                      secondary={`${order.contact.address.street || ""}, ${
+                        order.contact.address.houseNumber || ""
+                      },${order.contact.address.city || ""}`}
+                    />
+                  </ListItem>
+                  {/* Items List */}
                   {order.items.map((item) => (
                     <ListItem
                       key={item.id}
